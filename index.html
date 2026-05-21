@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfomity — Scale Your D2C Brand to ₹1 Crore/Month</title>
+  <meta name="description" content="For D2C brands spending ₹5,000–₹20,000/day on Meta Ads. We've scaled 200+ brands to ₹50L–₹1Cr/month. No results in 90 days? We work 30 days FREE."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+  /* ─── RESET & ROOT ─────────────────────────────────────────────── */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:    #06060E;
+    --bg2:   #0B0B1A;
+    --bg3:   #101022;
+    --bg4:   #161635;
+    --line:  rgba(255,255,255,0.07);
+    --line2: rgba(255,255,255,0.12);
+    --text:  #EEEEF8;
+    --muted: #8888AA;
+    --dim:   #444460;
+    --gold:  #E8A838;
+    --gold2: #FBC84A;
+    --ind:   #5B6AF8;
+    --grn:   #22C55E;
+    --red:   #EF4444;
+    --grad:         linear-gradient(135deg,#E8A838,#FBC84A);
+    --grad-ind:     linear-gradient(135deg,#5B6AF8,#7C3AED);
+    --grad-border:  linear-gradient(135deg,rgba(232,168,56,.3),rgba(251,200,74,.1));
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'DM Sans',sans-serif;
+    line-height:1.6;overflow-x:hidden;
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  #prog{position:fixed;top:0;left:0;height:2px;width:0;
+    background:var(--grad);z-index:9999;transition:width .08s}
+
+  /* ─── SCROLLING NOISE ─── */
+  body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    opacity:.5;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────────────────── */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:500;
+    height:62px;display:flex;align-items:center;
+    justify-content:space-between;padding:0 28px;
+    background:rgba(6,6,14,.88);
+    backdrop-filter:blur(20px) saturate(1.6);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-logo{
+    font-family:'Playfair Display',serif;
+    font-size:21px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .nav-mid{
+    display:flex;align-items:center;gap:8px;
+    background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);
+    border-radius:100px;padding:5px 14px;
+    font-size:12px;font-weight:600;color:#86EFAC;
+  }
+  .nav-mid .pulse{width:7px;height:7px;border-radius:50%;background:var(--grn);
+    animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}
+    70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+  .nav-cta{
+    background:var(--grad);color:#000;font-weight:800;font-size:13px;
+    padding:9px 20px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;
+    transition:transform .15s,box-shadow .15s;
+    box-shadow:0 0 18px rgba(232,168,56,.3);
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(232,168,56,.5)}
+  @media(max-width:640px){.nav-mid{display:none}}
+
+  /* ─── FLOATING WHATSAPP ─── */
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;z-index:400;
+    width:54px;height:54px;border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 20px rgba(37,211,102,.5);
+    text-decoration:none;transition:transform .2s,box-shadow .2s;
+    animation:wa-in .5s .5s both;
+  }
+  .wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.7)}
+  @keyframes wa-in{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+  .wa-float svg{width:28px;height:28px;fill:#fff}
+  .wa-tooltip{
+    position:absolute;right:64px;top:50%;transform:translateY(-50%);
+    background:var(--bg3);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;font-weight:600;color:var(--text);
+    white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;
+  }
+  .wa-float:hover .wa-tooltip{opacity:1}
+
+  /* ─── SECTION CORE ─── */
+  section{position:relative;z-index:1}
+  .pad{padding:96px 24px}
+  .pad-sm{padding:64px 24px}
+  .w{max-width:1100px;margin:0 auto}
+  .ey{font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    font-weight:700;color:var(--ind);margin-bottom:16px}
+  .sh{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(28px,4.2vw,50px);
+    font-weight:900;letter-spacing:-1.5px;line-height:1.12;margin-bottom:18px;
+  }
+  .ss{font-size:17px;color:var(--muted);line-height:1.75;max-width:580px}
+  em.g{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  em.i{font-style:normal;background:var(--grad-ind);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* ─── HERO ─────────────────────────────────────────────────────── */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;padding:140px 24px 80px;
+    overflow:hidden;
+  }
+  .hero-orb{
+    position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+    width:900px;height:700px;
+    background:radial-gradient(ellipse,rgba(91,106,248,.14) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .hero-orb2{
+    position:absolute;bottom:-80px;right:-60px;
+    width:500px;height:400px;
+    background:radial-gradient(ellipse,rgba(232,168,56,.07) 0%,transparent 65%);
+    pointer-events:none;
+  }
+
+  /* qualifier pill */
+  .h-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(232,168,56,.08);border:1px solid rgba(232,168,56,.22);
+    border-radius:100px;padding:7px 18px;margin-bottom:28px;
+    font-size:13px;font-weight:600;color:var(--gold2);
+    animation:up .7s ease both;
+  }
+  .h-pill .arrow{opacity:.6}
+
+  /* headline */
+  .hero-h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(36px,6vw,74px);
+    font-weight:900;line-height:1.06;letter-spacing:-2.5px;
+    max-width:960px;margin-bottom:14px;
+    animation:up .7s .07s ease both;
+  }
+  .hero-h1 .red-text{color:#FF6B6B}
+  .hero-qualifier{
+    font-size:clamp(16px,2vw,20px);
+    color:var(--muted);margin-bottom:10px;
+    animation:up .7s .13s ease both;
+  }
+  .hero-qualifier strong{
+    color:var(--text);font-weight:700;
+    background:rgba(232,168,56,.1);
+    border:1px solid rgba(232,168,56,.2);
+    border-radius:6px;padding:2px 8px;
+  }
+  .hero-body{
+    font-size:clamp(15px,1.8vw,18px);color:var(--muted);
+    max-width:600px;margin:0 auto 36px;line-height:1.75;
+    animation:up .7s .18s ease both;
+  }
+  .hero-body strong{color:var(--text);font-weight:600}
+
+  /* CTAs */
+  .hero-ctas{
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+    margin-bottom:56px;animation:up .7s .23s ease both;
+  }
+  .btn-gold{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--grad);color:#000;font-weight:800;
+    font-size:16px;padding:16px 34px;border-radius:10px;
+    text-decoration:none;border:none;cursor:pointer;
+    transition:transform .2s,box-shadow .2s;
+    box-shadow:0 0 32px rgba(232,168,56,.35);
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 52px rgba(232,168,56,.55)}
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:9px;
+    background:#25D366;color:#fff;font-weight:700;
+    font-size:16px;padding:16px 28px;border-radius:10px;
+    text-decoration:none;border:none;cursor:pointer;
+    transition:transform .2s,box-shadow .2s;
+    box-shadow:0 0 24px rgba(37,211,102,.3);
+  }
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(37,211,102,.5)}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;color:var(--text);
+    font-size:15px;font-weight:600;padding:16px 28px;border-radius:10px;
+    text-decoration:none;border:1px solid var(--line);
+    transition:border-color .2s,background .2s;
+  }
+  .btn-ghost:hover{border-color:rgba(91,106,248,.4);background:rgba(91,106,248,.06)}
+
+  /* hero stat strip */
+  .hero-stats{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+    background:var(--bg2);border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;animation:up .7s .3s ease both;
+  }
+  .hstat{padding:18px 32px;border-right:1px solid var(--line);text-align:center}
+  .hstat:last-child{border-right:none}
+  .hstat-n{
+    font-family:'Playfair Display',serif;font-size:28px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;margin-bottom:3px;
+  }
+  .hstat-l{font-size:11px;color:var(--muted);font-weight:500}
+  @keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:640px){
+    .hstat{padding:14px 18px;border-right:none;border-bottom:1px solid var(--line)}
+    .hstat:last-child{border-bottom:none}
+  }
+
+  /* ─── PLATFORM BADGES — SCROLLING MARQUEE ─── */
+  .badges{
+    background:var(--bg2);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:22px 0;overflow:hidden;
+  }
+  .badges-label{
+    text-align:center;font-size:10px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--dim);font-weight:600;margin-bottom:16px;padding:0 24px;
+  }
+  .badges-scroll-wrap{position:relative;overflow:hidden}
+  .badges-scroll-wrap::before,.badges-scroll-wrap::after{
+    content:'';position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none;
+  }
+  .badges-scroll-wrap::before{left:0;background:linear-gradient(to right,var(--bg2),transparent)}
+  .badges-scroll-wrap::after{right:0;background:linear-gradient(to left,var(--bg2),transparent)}
+  .badges-track{
+    display:flex;align-items:center;gap:12px;
+    width:max-content;padding:4px 6px;
+    animation:badge-scroll 22s linear infinite;
+  }
+  .badges-track:hover{animation-play-state:paused}
+  @keyframes badge-scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .badge-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--bg3);border:1px solid;border-radius:100px;
+    padding:10px 20px;font-size:13px;font-weight:700;color:var(--text);
+    white-space:nowrap;flex-shrink:0;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .badge-chip:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  .badge-dot{
+    width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block;
+  }
+  .bc-meta{border-color:rgba(0,130,251,.3);background:rgba(0,130,251,.06)}
+  .bc-meta .badge-dot{background:#0082FB;box-shadow:0 0 8px rgba(0,130,251,.6)}
+  .bc-google{border-color:rgba(234,67,53,.3);background:rgba(234,67,53,.06)}
+  .bc-google .badge-dot{background:#EA4335;box-shadow:0 0 8px rgba(234,67,53,.6)}
+  .bc-tiktok{border-color:rgba(254,44,85,.3);background:rgba(254,44,85,.06)}
+  .bc-tiktok .badge-dot{background:#FE2C55;box-shadow:0 0 8px rgba(254,44,85,.6)}
+  .bc-klav{border-color:rgba(0,178,136,.3);background:rgba(0,178,136,.06)}
+  .bc-klav .badge-dot{background:#00B288;box-shadow:0 0 8px rgba(0,178,136,.6)}
+
+  /* ─── QUALIFY (Who This Is For) ─── */
+  .qualify{background:var(--bg2)}
+  .qualify-wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;
+  }
+  @media(max-width:700px){.qualify-wrap{grid-template-columns:1fr}}
+  .qbox{border-radius:20px;padding:36px;border:1px solid}
+  .qbox.yes{background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.18)}
+  .qbox.no {background:rgba(239,68,68,.03);border-color:rgba(239,68,68,.12)}
+  .qbox-head{
+    font-family:'Playfair Display',serif;
+    font-size:20px;font-weight:800;margin-bottom:24px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .tag-yes{background:rgba(34,197,94,.12);color:var(--grn);border-radius:6px;padding:3px 10px;font-size:12px;font-family:'DM Sans',sans-serif}
+  .tag-no {background:rgba(239,68,68,.1); color:var(--red); border-radius:6px;padding:3px 10px;font-size:12px;font-family:'DM Sans',sans-serif}
+  .qlist{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .qlist li{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:var(--text)}
+  .qi{flex-shrink:0;margin-top:2px;font-size:15px}
+  .qlist li small{color:var(--muted);font-size:13px;display:block;margin-top:2px}
+
+  /* ─── LIVE STATS ─── */
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+    background:var(--line);border-radius:20px;overflow:hidden;margin-top:52px;
+  }
+  @media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+  .sc{
+    background:var(--bg3);padding:36px 28px;position:relative;
+    transition:background .3s;
+  }
+  .sc:hover{background:var(--bg4)}
+  .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:var(--grad);opacity:0;transition:opacity .3s}
+  .sc:hover::before{opacity:1}
+  .sc-n{
+    font-family:'Playfair Display',serif;font-size:48px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;margin-bottom:8px;
+  }
+  .sc-l{font-size:13px;color:var(--muted);line-height:1.4}
+  .sc-sub{font-size:11px;color:var(--dim);margin-top:4px}
+
+  /* ─── LOGO WALL ─── */
+  .logos-sec{
+    padding:52px 0;background:var(--bg2);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .logos-lbl{text-align:center;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--dim);margin-bottom:28px;font-weight:600}
+  .logo-row{overflow:hidden;position:relative;margin-bottom:10px}
+  .logo-row:last-child{margin-bottom:0}
+  .logo-row::before,.logo-row::after{
+    content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;
+  }
+  .logo-row::before{left:0;background:linear-gradient(to right,var(--bg2),transparent)}
+  .logo-row::after{right:0;background:linear-gradient(to left,var(--bg2),transparent)}
+  .logo-track{display:flex;gap:10px;width:max-content}
+  .logo-track.r1{animation:mq 32s linear infinite}
+  .logo-track.r2{animation:mq-r 36s linear infinite}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes mq-r{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .lchip{
+    background:var(--bg3);border:1px solid var(--line);border-radius:8px;
+    padding:9px 18px;font-size:13px;font-weight:600;color:var(--muted);
+    white-space:nowrap;transition:color .2s,border-color .2s;
+  }
+  .lchip:hover{color:var(--text);border-color:rgba(232,168,56,.25)}
+
+  /* ─── PROBLEM (PAS) ─── */
+  .problem{background:var(--bg)}
+  .prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:56px}
+  @media(max-width:768px){.prob-grid{grid-template-columns:1fr;gap:36px}}
+  .prob-quote{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(20px,2.8vw,30px);font-weight:700;line-height:1.45;
+    border-left:3px solid var(--gold);padding-left:24px;
+  }
+  .prob-quote .hl{color:var(--gold2)}
+  .prob-journey{
+    background:var(--bg2);border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;
+  }
+  .pj-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;border-bottom:1px solid var(--line);
+  }
+  .pj-row:last-child{border-bottom:none}
+  .pj-label{font-size:13px;color:var(--muted)}
+  .pj-val{font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace}
+  .pj-val.stuck{color:var(--red)}
+  .pj-val.goal{color:var(--grn)}
+  .pj-divider{background:rgba(232,168,56,.1);border-color:rgba(232,168,56,.2)}
+  .pj-divider .pj-label{color:var(--gold2);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+
+  .pas-blocks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+  @media(max-width:768px){.pas-blocks{grid-template-columns:1fr}}
+  .pas-card{border-radius:16px;padding:28px;border:1px solid}
+  .pas-card.p{background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.15)}
+  .pas-card.a{background:rgba(245,158,11,.04);border-color:rgba(245,158,11,.15)}
+  .pas-card.s{background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.15)}
+  .pas-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+  .pas-card.p .pas-tag{color:var(--red)}
+  .pas-card.a .pas-tag{color:#F59E0B}
+  .pas-card.s .pas-tag{color:var(--grn)}
+  .pas-card h3{font-size:16px;font-weight:700;margin-bottom:10px}
+  .pas-card p{font-size:14px;color:var(--muted);line-height:1.65}
+
+  /* ─── CASE STUDIES ─── */
+  .cs-sec{background:var(--bg2)}
+  .cs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;margin-top:52px}
+  .cs{
+    background:var(--bg3);border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;transition:transform .3s,border-color .3s;
+  }
+  .cs:hover{transform:translateY(-4px);border-color:rgba(232,168,56,.25)}
+  .cs-top{padding:22px 26px 18px;border-bottom:1px solid var(--line)}
+  .cs-brand-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+  .cs-brand{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .cs-cat{
+    background:rgba(91,106,248,.1);color:#A5B4FC;
+    border:1px solid rgba(91,106,248,.2);border-radius:6px;
+    padding:3px 10px;font-size:11px;font-weight:600;white-space:nowrap;
+  }
+  /* THE CORE: before → after in day-rate format */
+  .cs-transform{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .cs-before{
+    font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;
+    color:var(--red);background:rgba(239,68,68,.08);
+    border:1px solid rgba(239,68,68,.2);border-radius:6px;padding:6px 12px;
+  }
+  .cs-arr{color:var(--muted);font-size:20px;font-weight:300}
+  .cs-after{
+    font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;
+    color:var(--grn);background:rgba(34,197,94,.08);
+    border:1px solid rgba(34,197,94,.2);border-radius:6px;padding:6px 12px;
+  }
+  .cs-body{padding:22px 26px}
+  .cs-result{
+    font-family:'Playfair Display',serif;font-size:34px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;margin-bottom:6px;
+  }
+  .cs-sub{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .cs-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px}
+  .cs-tags{display:flex;gap:8px;flex-wrap:wrap}
+  .cs-tag{
+    background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:6px;padding:4px 10px;font-size:12px;color:var(--muted);
+  }
+
+  /* wide CS card */
+  .cs-wide{
+    background:var(--bg3);border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;margin-top:20px;
+  }
+  .cs-wide-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:700px){.cs-wide-grid{grid-template-columns:1fr}}
+  .cs-wide-l{padding:36px;border-right:1px solid var(--line)}
+  .cs-wide-r{
+    padding:36px;
+    background:linear-gradient(135deg,rgba(232,168,56,.05),rgba(251,200,74,.02));
+  }
+  .csm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .csm{background:var(--bg4);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .csm-n{
+    font-family:'Playfair Display',serif;font-size:26px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;margin-bottom:4px;
+  }
+  .csm-l{font-size:11px;color:var(--muted)}
+
+  /* ─── SYSTEM (Named Framework) ─── */
+  .system{background:var(--bg)}
+  .sys-name{
+    display:inline-flex;align-items:center;gap:10px;
+    background:rgba(232,168,56,.06);border:1px solid rgba(232,168,56,.2);
+    border-radius:8px;padding:8px 16px;
+    font-size:13px;font-weight:700;color:var(--gold2);
+    margin-bottom:28px;letter-spacing:.5px;
+  }
+  .sys-timeline{position:relative;margin-top:56px}
+  .sys-timeline::before{
+    content:'';position:absolute;top:0;bottom:0;left:36px;
+    width:1px;background:var(--line);
+  }
+  .sys-step{
+    display:grid;grid-template-columns:72px 1fr;
+    gap:28px;padding-bottom:48px;position:relative;
+  }
+  .sys-step:last-child{padding-bottom:0}
+  .ss-circle{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--bg2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:18px;font-weight:900;
+    color:var(--gold2);flex-shrink:0;position:relative;z-index:1;
+    transition:background .3s,border-color .3s;
+  }
+  .sys-step:hover .ss-circle{background:rgba(232,168,56,.1);border-color:rgba(232,168,56,.3)}
+  .ss-wk{font-size:10px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--dim);font-weight:600;text-align:center;margin-top:6px}
+  .ss-content{padding-top:10px}
+  .ss-content h3{font-size:20px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px}
+  .ss-content p{font-size:14px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:14px}
+  .ss-pills{display:flex;gap:7px;flex-wrap:wrap}
+  .ss-pill{
+    background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:6px;padding:4px 11px;font-size:12px;color:var(--muted);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testi{background:var(--bg2)}
+  .t-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:52px}
+  .tc{
+    background:var(--bg3);border:1px solid var(--line);border-radius:20px;
+    padding:28px;display:flex;flex-direction:column;
+    transition:border-color .3s,transform .3s;
+  }
+  .tc:hover{border-color:rgba(232,168,56,.22);transform:translateY(-3px)}
+  .tc-stars{color:var(--gold);font-size:13px;letter-spacing:3px;margin-bottom:14px}
+  .tc-text{
+    font-size:15px;color:var(--text);line-height:1.75;
+    font-style:italic;flex:1;margin-bottom:20px;
+  }
+  .tc-author{display:flex;align-items:center;gap:12px}
+  .tc-av{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--grad-ind);display:flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:800;color:#fff;flex-shrink:0;
+  }
+  .tc-name{font-size:14px;font-weight:700}
+  .tc-role{font-size:12px;color:var(--muted)}
+  .tc-metric{
+    margin-top:16px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--muted);
+    display:flex;gap:12px;align-items:center;
+  }
+  .tc-metric .mv{color:var(--grn);font-weight:700;font-family:'JetBrains Mono',monospace}
+
+  /* ─── OFFER ─── */
+  .offer-wrap{
+    display:grid;grid-template-columns:1fr 320px;gap:28px;margin-top:52px;align-items:start;
+  }
+  @media(max-width:900px){.offer-wrap{grid-template-columns:1fr}}
+  .offer-left{
+    background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:36px;
+  }
+  .o-list{display:flex;flex-direction:column;gap:18px;margin-top:24px}
+  .oi{display:flex;align-items:flex-start;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .oi:last-child{border-bottom:none;padding-bottom:0}
+  .oi-ic{
+    width:34px;height:34px;border-radius:9px;flex-shrink:0;
+    background:rgba(91,106,248,.1);border:1px solid rgba(91,106,248,.2);
+    display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:2px;
+  }
+  .oi-title{font-size:15px;font-weight:700;margin-bottom:3px}
+  .oi-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+  .offer-right{
+    background:var(--bg2);border:1px solid rgba(232,168,56,.22);
+    border-radius:20px;padding:32px;position:sticky;top:74px;
+  }
+  .scar{
+    display:flex;align-items:center;gap:8px;
+    background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);
+    border-radius:8px;padding:9px 13px;margin-bottom:20px;
+    font-size:13px;color:#FCA5A5;font-weight:600;
+  }
+  .scar .rdot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 1.5s infinite}
+  .or-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .or-price{
+    font-family:'Playfair Display',serif;font-size:44px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;margin-bottom:3px;
+  }
+  .or-sub{font-size:12px;color:var(--muted);margin-bottom:20px}
+  .or-feats{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+  .or-feat{display:flex;align-items:center;gap:9px;font-size:14px}
+  .or-feat .ck{color:var(--grn);font-size:15px}
+
+  /* ─── SHOPIFY PROOF SCREENSHOTS ─── */
+  .sp-section{margin:44px 0 36px}
+  .sp-hdr{text-align:center;margin-bottom:28px}
+  .sp-hdr-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(150,191,72,.12);border:1px solid rgba(150,191,72,.28);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;color:#96BF48;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+  .sp-hdr-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#96BF48;animation:spulse 1.8s ease-in-out infinite}
+  @keyframes spulse{0%,100%{box-shadow:0 0 0 0 rgba(150,191,72,.5)}50%{box-shadow:0 0 0 5px rgba(150,191,72,0)}}
+  .sp-hdr-sub{font-size:13px;color:var(--muted)}
+  .sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:960px){.sp-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.sp-grid{grid-template-columns:1fr}}
+  .sp-img-card{border:1px solid rgba(150,191,72,.2);border-radius:14px;overflow:hidden;background:var(--bg3);transition:.25s ease;cursor:pointer}
+  .sp-img-card:hover{border-color:rgba(150,191,72,.55);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.45)}
+  .sp-img-card img{width:100%;display:block;border-bottom:1px solid rgba(150,191,72,.12)}
+  .sp-img-cap{padding:11px 14px;display:flex;align-items:center;gap:8px}
+  .sp-img-dot{width:7px;height:7px;border-radius:50%;background:#96BF48;flex-shrink:0}
+  .sp-img-brand{font-size:12px;font-weight:700;color:var(--text);flex:1}
+  .sp-img-tag{font-size:9px;color:#96BF48;font-weight:600;letter-spacing:.05em}
+  /* Lightbox */
+  .sp-lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;padding:20px}
+  .sp-lightbox.open{display:flex}
+  .sp-lightbox img{max-width:90vw;max-height:90vh;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+  .sp-lb-close{position:absolute;top:20px;right:24px;font-size:28px;color:#fff;cursor:pointer;line-height:1;opacity:.7;transition:.15s}
+  .sp-lb-close:hover{opacity:1}
+
+  /* ─── GUARANTEE ─── */
+  .g-box{
+    max-width:760px;margin:52px auto 0;text-align:center;
+    background:linear-gradient(135deg,rgba(232,168,56,.06),rgba(251,200,74,.03));
+    border:1px solid rgba(232,168,56,.22);border-radius:28px;padding:56px 44px;
+    position:relative;overflow:hidden;
+  }
+  .g-box::before{
+    content:'';position:absolute;top:-60px;right:-60px;
+    width:240px;height:240px;
+    background:radial-gradient(circle,rgba(232,168,56,.08),transparent 70%);
+  }
+  .g-ico{font-size:56px;margin-bottom:20px}
+  .g-box h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(24px,3.5vw,38px);font-weight:900;letter-spacing:-1px;margin-bottom:18px;
+  }
+  .g-box p{font-size:17px;color:var(--muted);line-height:1.75;margin-bottom:12px}
+  .g-fine{font-size:14px;color:var(--dim);line-height:1.6;margin-bottom:32px}
+
+  /* ─── FOUNDER ─── */
+  .founder{background:var(--bg2)}
+  .founder-grid{
+    display:grid;grid-template-columns:280px 1fr;gap:52px;align-items:start;margin-top:52px;
+  }
+  @media(max-width:768px){.founder-grid{grid-template-columns:1fr}}
+  .founder-card{
+    background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:32px;text-align:center;
+  }
+  .founder-avatar{
+    width:100px;height:100px;border-radius:50%;margin:0 auto 16px;
+    background:var(--grad-ind);display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:#fff;
+  }
+  .founder-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;margin-bottom:4px}
+  .founder-role{font-size:13px;color:var(--muted);margin-bottom:16px}
+  .founder-stats{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .fs{flex:1;padding:12px 8px;text-align:center;border-right:1px solid var(--line)}
+  .fs:last-child{border-right:none}
+  .fs-n{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .fs-l{font-size:10px;color:var(--muted);font-weight:500}
+  .founder-story{padding-top:8px}
+  .founder-story h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;
+    letter-spacing:-.5px;margin-bottom:16px}
+  .founder-story p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+  .founder-story p strong{color:var(--text);font-weight:600}
+
+  /* ─── FAQ ─── */
+  .faq-list{max-width:720px;margin:52px auto 0;display:flex;flex-direction:column;gap:10px}
+  .fi{
+    background:var(--bg2);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;transition:border-color .2s;
+  }
+  .fi:hover{border-color:rgba(232,168,56,.2)}
+  .fi button{
+    width:100%;background:none;border:none;padding:20px 22px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    cursor:pointer;text-align:left;font-size:15px;font-weight:600;color:var(--text);
+    font-family:'DM Sans',sans-serif;
+  }
+  .fi .arr{
+    flex-shrink:0;width:24px;height:24px;border-radius:50%;
+    background:var(--bg3);display:flex;align-items:center;justify-content:center;
+    font-size:12px;color:var(--muted);transition:transform .3s,background .2s;
+  }
+  .fi.open .arr{transform:rotate(180deg);background:rgba(232,168,56,.12);color:var(--gold2)}
+  .fi-ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .fi.open .fi-ans{max-height:360px}
+  .fi-inner{padding:0 22px 22px;font-size:14px;color:var(--muted);line-height:1.75}
+
+  /* ─── FINAL CTA ─── */
+  .fcta{
+    text-align:center;padding:120px 24px;position:relative;overflow:hidden;
+  }
+  .fcta::before{
+    content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:800px;height:600px;
+    background:radial-gradient(ellipse,rgba(91,106,248,.12) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .fcta h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(32px,5.5vw,62px);
+    font-weight:900;letter-spacing:-2px;line-height:1.08;
+    margin-bottom:20px;position:relative;
+  }
+  .fcta p{
+    font-size:18px;color:var(--muted);line-height:1.75;
+    max-width:520px;margin:0 auto 36px;position:relative;
+  }
+  .fcta-ctas{
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+    margin-bottom:16px;position:relative;
+  }
+  .fcta-note{font-size:13px;color:var(--dim);position:relative}
+
+  .steps3{
+    display:flex;max-width:660px;margin:52px auto 0;
+    background:var(--bg2);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  }
+  .s3{flex:1;padding:22px 16px;text-align:center;border-right:1px solid var(--line)}
+  .s3:last-child{border-right:none}
+  .s3-ico{font-size:24px;margin-bottom:8px}
+  .s3-n{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ind);font-weight:700;margin-bottom:4px}
+  .s3-t{font-size:13px;color:var(--muted)}
+  @media(max-width:560px){.steps3{flex-direction:column}.s3{border-right:none;border-bottom:1px solid var(--line)}.s3:last-child{border-bottom:none}}
+
+  /* ─── FOOTER ─── */
+  .footer{
+    background:var(--bg2);border-top:1px solid var(--line);padding:44px 24px;
+  }
+  .footer-inner{
+    max-width:1100px;margin:0 auto;
+    display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;
+  }
+  @media(max-width:600px){.footer-inner{grid-template-columns:1fr}}
+  .f-logo{
+    font-family:'Playfair Display',serif;font-size:22px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:8px;
+  }
+  .f-tag{font-size:13px;color:var(--muted);max-width:340px;line-height:1.6;margin-bottom:18px}
+  .f-links{display:flex;gap:20px;flex-wrap:wrap}
+  .f-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .f-links a:hover{color:var(--text)}
+  .f-right{text-align:right}
+  .f-live-lbl{font-size:11px;color:var(--muted);margin-bottom:4px}
+  .f-live-n{
+    font-family:'Playfair Display',serif;font-size:44px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;
+  }
+  .f-live-sub{font-size:12px;color:var(--muted)}
+  .footer-bottom{
+    max-width:1100px;margin:28px auto 0;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+    font-size:12px;color:var(--dim);
+  }
+
+  /* ─── REVEAL ─── */
+  .r{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+  .r.v{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}
+  .d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+  /* ─── DEEP CASE STUDIES (TABBED) ─── */
+  .cst-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:44px 0 28px}
+  @media(max-width:800px){.cst-nav{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:420px){.cst-nav{grid-template-columns:1fr}}
+  .cst-tab{
+    background:var(--bg2);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;cursor:pointer;text-align:left;
+    transition:border-color .25s,background .25s;font-family:'DM Sans',sans-serif;
+  }
+  .cst-tab:hover{border-color:rgba(232,168,56,.28);background:var(--bg3)}
+  .cst-tab.active{
+    border-color:rgba(232,168,56,.45);
+    background:linear-gradient(135deg,rgba(232,168,56,.09),rgba(251,200,74,.04));
+  }
+  .cst-tab .ct-brand{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:5px}
+  .cst-tab .ct-num{display:block;font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace;color:var(--gold2)}
+  .cst-tab .ct-cat{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+  .cst-panel{display:none;animation:fadePanel .35s ease}
+  .cst-panel.active{display:block}
+  @keyframes fadePanel{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  /* panel grid */
+  .csf-row1{display:grid;grid-template-columns:1fr 300px;gap:18px;margin-bottom:18px}
+  @media(max-width:900px){.csf-row1{grid-template-columns:1fr}}
+  .csf-card{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .csf-brand-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .csf-brand-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;letter-spacing:-.5px}
+  .csf-brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
+  .csf-tags-row{display:flex;gap:7px;flex-wrap:wrap}
+  .csf-chip{background:rgba(91,106,248,.1);color:#A5B4FC;border:1px solid rgba(91,106,248,.2);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:600}
+  .csf-chip.gold{background:rgba(232,168,56,.1);color:var(--gold2);border-color:rgba(232,168,56,.2)}
+  .csf-chip.grn{background:rgba(34,197,94,.1);color:#86EFAC;border-color:rgba(34,197,94,.2)}
+  .csf-transform{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .csf-b{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;
+    color:var(--red);background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:10px 14px}
+  .csf-arr{font-size:22px;color:var(--muted);font-weight:300}
+  .csf-a{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;
+    color:var(--grn);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px 14px}
+  .csf-intro{font-size:14px;color:var(--muted);line-height:1.72}
+
+  /* metrics + quote side */
+  .csf-right{display:flex;flex-direction:column;gap:14px}
+  .csf-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .csf-met{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:16px}
+  .csf-met-n{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:4px}
+  .csf-met-l{font-size:11px;color:var(--muted);line-height:1.3}
+  .csf-quote-box{
+    background:linear-gradient(135deg,rgba(232,168,56,.07),rgba(251,200,74,.03));
+    border:1px solid rgba(232,168,56,.22);border-radius:13px;padding:20px;
+    font-size:14px;color:var(--text);line-height:1.7;font-style:italic;flex:1;
+  }
+  .csf-quote-author{margin-top:10px;font-size:12px;color:var(--gold2);font-style:normal;font-weight:700}
+
+  /* story row */
+  .csf-row2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+  @media(max-width:768px){.csf-row2{grid-template-columns:1fr}}
+  .csf-col{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .csf-col-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+  .csf-col.challenge .csf-col-label{color:var(--red)}
+  .csf-col.approach  .csf-col-label{color:var(--ind)}
+  .csf-col.outcome   .csf-col-label{color:var(--grn)}
+  .csf-col h4{font-size:15px;font-weight:700;margin-bottom:10px;letter-spacing:-.2px}
+  .csf-ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .csf-ul li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--muted);line-height:1.55}
+  .csf-ul li span{flex-shrink:0;margin-top:1px;font-size:12px}
+  .challenge .csf-ul li span{color:var(--red)}
+  .approach  .csf-ul li span{color:var(--ind)}
+  .outcome   .csf-ul li span{color:var(--grn)}
+
+  /* timeline + bar row */
+  .csf-row3{display:grid;grid-template-columns:1fr 280px;gap:14px}
+  @media(max-width:900px){.csf-row3{grid-template-columns:1fr}}
+  .csf-tl{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .csf-tl-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:20px}
+  .csf-tl-items{display:flex;flex-direction:column;gap:0;position:relative}
+  .csf-tl-items::before{content:'';position:absolute;left:10px;top:12px;bottom:12px;width:1px;background:var(--line)}
+  .csf-ms{display:flex;align-items:flex-start;gap:14px;padding-bottom:18px;position:relative}
+  .csf-ms:last-child{padding-bottom:0}
+  .csf-ms-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);
+    background:var(--bg3);flex-shrink:0;position:relative;z-index:1;margin-top:1px;
+    display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s}
+  .csf-ms.done .csf-ms-dot{background:var(--gold);border-color:var(--gold2);
+    box-shadow:0 0 10px rgba(232,168,56,.4)}
+  .csf-ms-dot-inner{width:8px;height:8px;border-radius:50%;background:var(--bg)}
+  .csf-ms.done .csf-ms-dot-inner{background:#fff;opacity:.8}
+  .csf-ms-body{}
+  .csf-ms-day{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;
+    color:var(--gold2);margin-bottom:2px}
+  .csf-ms.done .csf-ms-day{color:var(--gold2)}
+  .csf-ms-text{font-size:13px;color:var(--muted);line-height:1.45}
+  .csf-ms.done .csf-ms-text{color:var(--text)}
+
+  /* revenue bar */
+  .csf-bar-box{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .csf-bar-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:20px}
+  .csf-bars{display:flex;gap:16px;align-items:flex-end;height:160px;margin-bottom:14px}
+  .csf-bar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .csf-bar-fill{width:100%;border-radius:6px 6px 0 0;transition:height .8s ease}
+  .csf-bar-fill.bef{background:rgba(239,68,68,.25);border:1px solid rgba(239,68,68,.3)}
+  .csf-bar-fill.aft{background:linear-gradient(to top,#22C55E 0%,#86EFAC 100%);
+    border:1px solid rgba(34,197,94,.4);box-shadow:0 0 20px rgba(34,197,94,.15)}
+  .csf-bar-val{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;text-align:center;line-height:1.3}
+  .csf-bar-val.rv{color:var(--red)}.csf-bar-val.gv{color:var(--grn)}
+  .csf-bar-lbl{font-size:10px;color:var(--muted);text-align:center}
+  .csf-bar-multiplier{text-align:center;padding-top:12px;border-top:1px solid var(--line)}
+  .csf-mult-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+  .csf-mult-l{font-size:11px;color:var(--muted);margin-top:2px}
+
+  /* ─── MINI RESULTS GRID ─── */
+  .mr-label{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin:52px 0 20px;text-align:center}
+  .mini-results{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  @media(max-width:1100px){.mini-results{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:900px){.mini-results{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:600px){.mini-results{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:380px){.mini-results{grid-template-columns:1fr}}
+  .mini-card{background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:18px 16px;transition:.25s ease}
+  .mini-card:hover{border-color:rgba(232,168,56,.3);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.35)}
+  .mini-cat{font-size:10px;color:var(--ind);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+  .mini-brand{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.3}
+  .mini-metric{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold2);font-weight:600;margin-bottom:3px}
+  .mini-sub{font-size:11px;color:var(--muted);line-height:1.4}
+  .mini-badge{display:inline-block;margin-top:10px;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;background:rgba(34,197,94,.12);color:var(--grn);border:1px solid rgba(34,197,94,.25)}
+
+  /* ─── UTILITY ─── */
+  .center{text-align:center}
+  .bg2{background:var(--bg2)}
+  .tac{text-align:center}
+
+  /* ─── OPT-IN FORM ─── */
+  .opt-form-wrap{max-width:620px;margin:36px auto 0}
+  .opt-form{
+    background:var(--bg2);
+    border:1px solid rgba(232,168,56,.22);
+    border-radius:20px;padding:36px;
+  }
+  .of-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .of-field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+  .of-field:last-of-type{margin-bottom:0}
+  .of-label{
+    font-size:11px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .of-input{
+    background:var(--bg3);border:1px solid var(--line2);border-radius:10px;
+    padding:13px 16px;font-size:15px;font-weight:500;color:var(--text);
+    font-family:'DM Sans',sans-serif;outline:none;width:100%;
+    transition:border-color .2s,box-shadow .2s;
+    -webkit-appearance:none;appearance:none;
+  }
+  .of-input:focus{
+    border-color:rgba(232,168,56,.5);
+    box-shadow:0 0 0 3px rgba(232,168,56,.08);
+  }
+  .of-input::placeholder{color:var(--dim)}
+  .of-select{
+    cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath stroke='%238888AA' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;background-size:12px;
+    padding-right:38px;
+  }
+  .of-select option{background:var(--bg3);color:var(--text)}
+  .of-textarea{resize:vertical;min-height:90px;line-height:1.6}
+  .of-submit{
+    width:100%;justify-content:center;
+    font-size:16px;padding:17px 20px;
+    margin-top:10px;
+  }
+  .of-submit:disabled{opacity:.6;cursor:not-allowed;transform:none !important;box-shadow:none !important}
+  .of-note{font-size:12px;color:var(--dim);text-align:center;margin-top:10px;line-height:1.5}
+  /* Success state */
+  .of-success{
+    text-align:center;padding:48px 32px;
+    background:var(--bg2);border:1px solid rgba(232,168,56,.22);
+    border-radius:20px;
+  }
+  .of-success-ico{font-size:52px;margin-bottom:16px}
+  .of-success h3{
+    font-family:'Playfair Display',serif;font-size:30px;font-weight:900;
+    background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:12px;
+  }
+  .of-success p{font-size:15px;color:var(--muted);line-height:1.75}
+  @media(max-width:640px){
+    .of-row{grid-template-columns:1fr}
+    .opt-form{padding:24px 18px}
+    .of-success{padding:36px 20px}
+    .of-success h3{font-size:24px}
+  }
+
+  /* ─── GUARANTEE GRID (replaces inline style — responsive) ─── */
+  .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0;text-align:left}
+
+  /* ─── FOUNDER CTA ROW ─── */
+  .founder-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+
+  /* ════════════════════════════════════════════════════════════
+     MOBILE-FIRST OPTIMISATION  ≤ 640px
+  ════════════════════════════════════════════════════════════ */
+  @media(max-width:640px){
+
+    /* Global */
+    a,button{-webkit-tap-highlight-color:transparent}
+    .pad{padding:60px 20px}
+    .pad-sm{padding:44px 20px}
+    .sh{letter-spacing:-1px}
+    .ss{font-size:15px}
+    .ey{font-size:10px;letter-spacing:2px}
+
+    /* ── Nav ── */
+    .nav{padding:0 16px;height:56px}
+    .nav-logo{font-size:17px}
+    .nav-cta{font-size:11px;padding:7px 12px}
+
+    /* ── WhatsApp float ── */
+    .wa-float{bottom:28px;right:18px;width:50px;height:50px}
+    .wa-float svg{width:24px;height:24px}
+
+    /* ── Hero ── */
+    .hero{padding:90px 20px 52px}
+    .h-pill{font-size:11px;padding:6px 14px;margin-bottom:20px}
+    .hero-h1{
+      font-size:clamp(28px,8vw,44px);
+      letter-spacing:-1.5px;margin-bottom:12px;
+    }
+    .hero-qualifier{font-size:13px;margin-bottom:8px}
+    .hero-body{font-size:14px;margin-bottom:28px}
+    .hero-ctas{flex-direction:column;gap:10px;margin-bottom:36px;width:100%}
+    .hero-ctas .btn-gold,
+    .hero-ctas .btn-wa,
+    .hero-ctas .btn-ghost{
+      width:100%;justify-content:center;
+      font-size:15px;padding:16px 20px;
+    }
+    /* Hero stat strip → 2-column grid */
+    .hero-stats{
+      display:grid;grid-template-columns:1fr 1fr;
+      border-radius:12px;
+    }
+    .hstat{
+      padding:16px 10px;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .hstat:nth-child(even){border-right:none}
+    .hstat:nth-child(3),.hstat:nth-child(4){border-bottom:none}
+    .hstat:nth-child(5){
+      grid-column:1/-1;
+      border-right:none;border-bottom:none;
+      border-top:1px solid var(--line);
+    }
+    .hstat-n{font-size:22px}
+    .hstat-l{font-size:10px}
+
+    /* ── Platform badges — no mobile override needed (marquee works at all widths) ── */
+
+    /* ── Qualify ── */
+    .qualify-wrap{gap:16px}
+    .qbox{padding:22px 18px;border-radius:16px}
+    .qbox-head{margin-bottom:14px}
+    .qlist li{font-size:14px;gap:8px}
+    .qlist li small{font-size:12px}
+
+    /* ── Live stats ── */
+    .stats-grid{margin-top:36px}
+    .sc{padding:24px 16px}
+    .sc-n{font-size:36px}
+    .sc-l{font-size:12px}
+    .sc-sub{font-size:10px}
+
+    /* ── Problem section ── */
+    .prob-grid{margin-bottom:36px}
+    .prob-quote{font-size:16px;padding-left:14px;line-height:1.55}
+    .pj-row{padding:10px 14px;flex-wrap:wrap;gap:2px}
+    .pj-label{flex:1 1 60%;font-size:12px}
+    .pj-val{flex:0 0 auto;font-size:12px;text-align:right}
+    .pas-card{padding:20px 16px;border-radius:12px}
+    .pas-card h3{font-size:15px}
+    .pas-card p{font-size:13px}
+
+    /* ── Case study tabs ── */
+    .cst-tab{padding:12px 14px;border-radius:11px}
+    .cst-tab .ct-brand{font-size:12px;margin-bottom:3px}
+    .cst-tab .ct-num{font-size:11px}
+    .cst-tab .ct-cat{font-size:10px}
+
+    /* ── Case study panels ── */
+    .csf-card{padding:20px 16px}
+    .csf-brand-row{flex-direction:column;gap:6px;margin-bottom:12px}
+    .csf-brand-name{font-size:20px}
+    .csf-tags-row{gap:5px}
+    .csf-chip{font-size:10px;padding:2px 8px}
+    .csf-transform{flex-wrap:wrap;gap:6px;margin-bottom:12px}
+    .csf-b,.csf-a{font-size:13px;padding:7px 10px}
+    .csf-arr{font-size:18px}
+    .csf-intro{font-size:13px}
+    .csf-metrics{gap:8px}
+    .csf-met{padding:12px}
+    .csf-met-n{font-size:20px}
+    .csf-met-l{font-size:10px}
+    .csf-quote-box{padding:16px;font-size:13px}
+    .csf-col{padding:16px 14px;border-radius:12px}
+    .csf-col h4{font-size:14px}
+    .csf-ul li{font-size:12px}
+    .csf-tl-title,.csf-bar-title{font-size:10px}
+    .csf-tl{padding:18px 14px}
+    .csf-ms{gap:10px;padding-bottom:14px}
+    .csf-ms-text{font-size:12px}
+    .csf-ms-day{font-size:10px}
+    .csf-bar-box{padding:18px 14px}
+    .csf-bars{height:120px;gap:8px}
+    .csf-bar-val{font-size:9px}
+    .csf-mult-n{font-size:22px}
+    .csf-mult-l{font-size:10px}
+
+    /* wide CS card */
+    .cs-wide-l{
+      padding:22px 18px;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+    }
+    .cs-wide-r{padding:22px 18px}
+    .csm-n{font-size:20px}
+
+    /* ── Shopify screenshots ── */
+    .sp-section{margin:20px 0 16px}
+    .sp-hdr{margin-bottom:16px}
+    .sp-hdr-badge{font-size:10px;padding:5px 12px}
+    .sp-img-brand{font-size:11px}
+    .sp-img-tag{font-size:8px}
+
+    /* ── System / Scale Stack ── */
+    .sys-name{font-size:11px;padding:6px 12px}
+    .sys-timeline{margin-top:36px}
+    .sys-timeline::before{left:24px}
+    .sys-step{grid-template-columns:48px 1fr;gap:14px;padding-bottom:32px}
+    .ss-circle{width:44px;height:44px;font-size:15px}
+    .ss-content h3{font-size:17px;margin-bottom:6px}
+    .ss-content p{font-size:13px}
+    .ss-pills{gap:5px}
+    .ss-pill{font-size:11px;padding:3px 8px}
+
+    /* ── Offer / pricing ── */
+    .offer-left{padding:22px 18px}
+    .offer-right{padding:22px 18px;position:static}
+    .or-price{font-size:34px}
+    .or-lbl{font-size:10px}
+    .oi{gap:10px;padding-bottom:14px}
+    .oi-ic{width:30px;height:30px;font-size:13px}
+    .oi-title{font-size:14px}
+    .oi-desc{font-size:12px}
+    .scar{font-size:12px;padding:8px 10px}
+
+    /* ── Guarantee ── */
+    .g-box{padding:36px 22px;border-radius:20px;margin:36px auto 0}
+    .g-ico{font-size:44px;margin-bottom:12px}
+    .g-box h2{font-size:clamp(22px,6vw,30px)}
+    .g-box p{font-size:15px;line-height:1.65}
+    .g-grid{grid-template-columns:1fr;gap:10px;margin:20px 0}
+    .g-fine{font-size:13px}
+
+    /* ── Testimonials ── */
+    .tc{padding:22px 18px}
+    .tc-text{font-size:14px}
+    .tc-metric{font-size:11px}
+
+    /* ── Founder ── */
+    .founder-card{padding:22px 18px}
+    .founder-avatar{width:80px;height:80px;font-size:32px}
+    .founder-name{font-size:19px}
+    .founder-role{font-size:12px}
+    .founder-story h3{font-size:20px;margin-bottom:12px}
+    .founder-story p{font-size:14px;line-height:1.7;margin-bottom:12px}
+    .founder-ctas{flex-direction:column;gap:10px}
+    .founder-cta-btn{
+      width:100% !important;
+      justify-content:center !important;
+      font-size:14px !important;
+      padding:14px 20px !important;
+      box-sizing:border-box;
+    }
+
+    /* ── FAQ ── */
+    .faq-list{margin-top:36px}
+    .fi button{padding:16px;font-size:14px}
+    .fi-inner{padding:0 16px 16px;font-size:13px}
+
+    /* ── Final CTA ── */
+    .fcta{padding:72px 20px}
+    .fcta h2{letter-spacing:-1.5px;margin-bottom:14px}
+    .fcta p{font-size:15px;margin-bottom:28px}
+    .fcta-ctas{flex-direction:column;gap:10px}
+    .fcta-ctas a{
+      width:100% !important;
+      justify-content:center !important;
+      font-size:15px !important;
+      padding:16px 20px !important;
+      box-sizing:border-box;
+    }
+    .fcta-note{font-size:12px}
+    .steps3{margin-top:36px;border-radius:12px}
+    .s3{padding:18px 10px}
+    .s3-ico{font-size:20px}
+    .s3-t{font-size:11px}
+    .s3-n{font-size:9px}
+
+    /* ── Footer ── */
+    .footer{padding:36px 20px}
+    .f-right{text-align:left}
+    .f-live-n{font-size:36px}
+    .f-links{gap:14px}
+    .footer-bottom{
+      font-size:11px;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:6px;
+    }
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     VERY NARROW SCREENS  ≤ 390px  (fine-tune)
+  ════════════════════════════════════════════════════════════ */
+  @media(max-width:390px){
+    .hero-h1{font-size:28px}
+    .sh{font-size:26px}
+    .mini-results{grid-template-columns:1fr}
+    .csm-grid{grid-template-columns:1fr}
+    .csf-metrics{grid-template-columns:1fr}
+    /* badge-chip handled by marquee — no override needed */
+  }
+  </style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="prog"></div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919999999999?text=Hi%20Perfomity%2C%20I%20want%20a%20free%20scaling%20audit%20for%20my%20D2C%20brand"
+   class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <div class="wa-tooltip">Chat on WhatsApp</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ════ NAV ════ -->
+<nav class="nav">
+  <div class="nav-logo">Perfomity</div>
+  <div class="nav-mid">
+    <span class="pulse"></span>
+    40 Brands Scaling Now — 3 Spots Left
+  </div>
+  <a href="#book" class="nav-cta">Book Free Audit →</a>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="top">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+
+  <div class="h-pill">
+    <span>For D2C Brands Spending ₹5,000+/Day on Meta</span>
+    <span class="arrow">→</span>
+  </div>
+
+  <h1 class="hero-h1">
+    Your Meta Ads Work.<br/>
+    Your ROAS Just <span class="red-text">Dies</span><br/>
+    The Moment You Try to Scale.
+  </h1>
+
+  <p class="hero-qualifier">
+    If you're spending <strong>₹5,000–₹20,000/day</strong> and your ROAS crashes every time you push budget —
+    this is the exact problem we've fixed <strong>200+ times.</strong>
+  </p>
+
+  <p class="hero-body">
+    40 D2C brands are scaling with us <strong>right now.</strong> We take founders from
+    ₹15 lakh/month to <strong>₹50 lakh–₹1 Crore/month</strong> — profitably, systematically,
+    and with a guarantee in writing.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#book" class="btn-gold">
+      Book Free Revenue Audit →
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-n" data-count="200">0</div>
+      <div class="hstat-l">Brands Served</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n" data-count="40">0</div>
+      <div class="hstat-l">Active Right Now</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">₹50Cr+</div>
+      <div class="hstat-l">Revenue Generated</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">3.5X</div>
+      <div class="hstat-l">Average ROAS</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">90%+</div>
+      <div class="hstat-l">Client Retention</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PLATFORM BADGES ════ -->
+<div class="badges">
+  <div class="badges-label">Certified Partners</div>
+  <div class="badges-scroll-wrap">
+    <div class="badges-track">
+      <div class="badge-chip bc-meta"><span class="badge-dot"></span>Meta Business Partner</div>
+      <div class="badge-chip bc-google"><span class="badge-dot"></span>Google Partner</div>
+      <div class="badge-chip bc-klav"><span class="badge-dot"></span>Klaviyo Partner</div>
+      <div class="badge-chip bc-meta"><span class="badge-dot"></span>Meta Business Partner</div>
+      <div class="badge-chip bc-google"><span class="badge-dot"></span>Google Partner</div>
+      <div class="badge-chip bc-klav"><span class="badge-dot"></span>Klaviyo Partner</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ WHO THIS IS FOR ════ -->
+<section class="qualify pad" id="qualify">
+  <div class="w">
+    <div class="ey r">Read This First</div>
+    <h2 class="sh r">Is Perfomity Right<br/>For Your Brand?</h2>
+    <p class="ss r">We only take 3 new brands per month — and we say no more than we say yes.
+      Here's the honest filter. If you check every box on the left, book the call.</p>
+
+    <div class="qualify-wrap">
+      <div class="qbox yes r">
+        <div class="qbox-head"><span class="tag-yes">✓ Built For You</span></div>
+        <ul class="qlist">
+          <li>
+            <span class="qi">✅</span>
+            <div>You're spending <strong>₹5,000–₹20,000/day</strong> on Meta Ads right now
+              <small>This is the sweet spot where our system works best</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">✅</span>
+            <div>Your ROAS drops every time you push past your current spend ceiling
+              <small>This is a structure problem — and it's exactly what we fix</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">✅</span>
+            <div>You're doing <strong>₹10–30 lakh/month</strong> and want to reach <strong>₹50L–₹1Cr+</strong>
+              <small>This is the gap our 200+ clients crossed</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">✅</span>
+            <div>You sell physical D2C products with proven customer demand
+              <small>Not courses, services, or untested products</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">✅</span>
+            <div>You can invest <strong>₹3–5 lakh/month</strong> in ad spend beyond our retainer
+              <small>Fuel for the system we build</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">✅</span>
+            <div>You want a results-accountable partner, not just another vendor
+              <small>We put the guarantee in writing</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="qbox no r d1">
+        <div class="qbox-head"><span class="tag-no">✕ Not the Right Fit</span></div>
+        <ul class="qlist">
+          <li>
+            <span class="qi">❌</span>
+            <div>You're spending less than <strong>₹3,000/day</strong> on ads
+              <small>The system needs minimum fuel to scale — we can't compress that</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">❌</span>
+            <div>You're still testing whether your product has demand
+              <small>We scale what already works — we don't validate untested products</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">❌</span>
+            <div>You're shopping agencies purely on price
+              <small>Cheapest agency = most expensive mistake in DTC</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">❌</span>
+            <div>You expect meaningful results in the first 2–3 weeks
+              <small>Sustainable scaling takes 30–60 days to show — we're honest about that</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">❌</span>
+            <div>You're unwilling to test new creatives or change your current approach
+              <small>If the current approach worked, you wouldn't be here</small>
+            </div>
+          </li>
+          <li>
+            <span class="qi">❌</span>
+            <div>You want set-and-forget management with no collaboration
+              <small>We're a growth partner — we need your inputs and speed</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;text-align:center" class="r">
+      <a href="#book" class="btn-gold">I Qualify — Book My Free Audit →</a>
+      <div style="margin-top:12px;font-size:13px;color:var(--dim)">Free. No commitment. 45 minutes. We'll tell you if we can actually help.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LIVE STATS ════ -->
+<section class="pad bg2" id="proof">
+  <div class="w">
+    <div class="ey r tac">Live Numbers</div>
+    <h2 class="sh r tac" style="max-width:600px;margin-left:auto;margin-right:auto">
+      We Don't Round Numbers.<br/>These Are Real.
+    </h2>
+    <p class="ss r tac" style="margin:0 auto">
+      Every stat below is the actual number — not an estimate, not a projection. This is what 200+ brands of data looks like.
+    </p>
+    <div class="stats-grid r">
+      <div class="sc">
+        <div class="sc-n" data-count="200">0</div>
+        <div class="sc-l">Total D2C Brands Scaled</div>
+        <div class="sc-sub">Since we started — across every category</div>
+      </div>
+      <div class="sc">
+        <div class="sc-n" data-count="40">0</div>
+        <div class="sc-l">Brands We're Growing Right Now</div>
+        <div class="sc-sub">Active retainer clients this month</div>
+      </div>
+      <div class="sc">
+        <div class="sc-n">₹50Cr+</div>
+        <div class="sc-l">Total Revenue Generated</div>
+        <div class="sc-sub">Across all managed ad accounts</div>
+      </div>
+      <div class="sc">
+        <div class="sc-n">3.5X</div>
+        <div class="sc-l">Average ROAS Across All Clients</div>
+        <div class="sc-sub">Blended — including scaling months</div>
+      </div>
+      <div class="sc">
+        <div class="sc-n">90%+</div>
+        <div class="sc-l">Client Retention After 90 Days</div>
+        <div class="sc-sub">People who could leave us, don't</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LOGO WALL ════ -->
+<div class="logos-sec">
+  <div class="logos-lbl">Trusted by these D2C brands — and 185+ more</div>
+  <div class="logo-row">
+    <div class="logo-track r1">
+      <div class="lchip">Polorizer</div><div class="lchip">UpLiquidation</div>
+      <div class="lchip">Mashhoor Plus</div><div class="lchip">Naksh For You</div>
+      <div class="lchip">Sagar Perfumes</div><div class="lchip">Goseva</div>
+      <div class="lchip">Nooky</div><div class="lchip">Earthwear</div>
+      <div class="lchip">Uff Perfumes</div><div class="lchip">Rozella Perfumes</div>
+      <div class="lchip">Irazmo</div><div class="lchip">Sprey It</div>
+      <div class="lchip">The Alt Beauty</div><div class="lchip">Neidhal Online</div>
+      <div class="lchip">Vaanya Fruits Dubai</div>
+      <!-- dup for seamless loop -->
+      <div class="lchip">Polorizer</div><div class="lchip">UpLiquidation</div>
+      <div class="lchip">Mashhoor Plus</div><div class="lchip">Naksh For You</div>
+      <div class="lchip">Sagar Perfumes</div><div class="lchip">Goseva</div>
+      <div class="lchip">Nooky</div><div class="lchip">Earthwear</div>
+      <div class="lchip">Uff Perfumes</div><div class="lchip">Rozella Perfumes</div>
+      <div class="lchip">Irazmo</div><div class="lchip">Sprey It</div>
+      <div class="lchip">The Alt Beauty</div><div class="lchip">Neidhal Online</div>
+      <div class="lchip">Vaanya Fruits Dubai</div>
+    </div>
+  </div>
+  <div class="logo-row">
+    <div class="logo-track r2">
+      <div class="lchip">Neidhal Online</div><div class="lchip">The Alt Beauty</div>
+      <div class="lchip">Sprey It</div><div class="lchip">Irazmo</div>
+      <div class="lchip">Rozella Perfumes</div><div class="lchip">Uff Perfumes</div>
+      <div class="lchip">Earthwear</div><div class="lchip">Nooky</div>
+      <div class="lchip">Goseva</div><div class="lchip">Sagar Perfumes</div>
+      <div class="lchip">Naksh For You</div><div class="lchip">Mashhoor Plus</div>
+      <div class="lchip">UpLiquidation</div><div class="lchip">Polorizer</div>
+      <!-- dup for seamless loop -->
+      <div class="lchip">Neidhal Online</div><div class="lchip">The Alt Beauty</div>
+      <div class="lchip">Sprey It</div><div class="lchip">Irazmo</div>
+      <div class="lchip">Rozella Perfumes</div><div class="lchip">Uff Perfumes</div>
+      <div class="lchip">Earthwear</div><div class="lchip">Nooky</div>
+      <div class="lchip">Goseva</div><div class="lchip">Sagar Perfumes</div>
+      <div class="lchip">Naksh For You</div><div class="lchip">Mashhoor Plus</div>
+      <div class="lchip">UpLiquidation</div><div class="lchip">Polorizer</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PROBLEM (PAS) ════ -->
+<section class="problem pad" id="problem">
+  <div class="w">
+    <div class="ey r">Why You're Stuck</div>
+    <h2 class="sh r">The ₹5K/Day Wall.<br/>And Why Scaling Harder<br/>Makes It Worse.</h2>
+
+    <div class="prob-grid">
+      <div class="prob-quote r">
+        "You pushed ad spend from ₹3,000 to ₹6,000/day. ROAS went from
+        <span class="hl">3.5X to 1.8X.</span> So you pulled back.
+        Next month you tried again. Same thing happened.
+        <br/><br/>
+        You're not doing anything wrong.
+        You've just <span class="hl">hit a ceiling that every D2C brand hits</span> — and you can't break it
+        with more budget. You need a different system."
+      </div>
+
+      <div class="prob-journey r d1">
+        <div class="pj-row">
+          <span class="pj-label">Where you are today</span>
+          <span class="pj-val stuck">₹5,000–₹15,000/day</span>
+        </div>
+        <div class="pj-row">
+          <span class="pj-label">Monthly revenue</span>
+          <span class="pj-val stuck">₹15–₹30 lakh/month</span>
+        </div>
+        <div class="pj-row">
+          <span class="pj-label">ROAS when you scale spend</span>
+          <span class="pj-val stuck">Crashes to 1.5–2X</span>
+        </div>
+        <div class="pj-row">
+          <span class="pj-label">Creative fatigue</span>
+          <span class="pj-val stuck">Same 3 ads, dying fast</span>
+        </div>
+        <div class="pj-row pj-divider">
+          <span class="pj-label">→ Target</span>
+          <span></span>
+        </div>
+        <div class="pj-row">
+          <span class="pj-label">Daily revenue goal</span>
+          <span class="pj-val goal">₹1,65,000+/day</span>
+        </div>
+        <div class="pj-row">
+          <span class="pj-label">Monthly revenue goal</span>
+          <span class="pj-val goal">₹50L–₹1 Crore/month</span>
+        </div>
+        <div class="pj-row">
+          <span class="pj-label">ROAS at scale</span>
+          <span class="pj-val goal">3X+ maintained</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAS blocks -->
+    <div class="pas-blocks">
+      <div class="pas-card p r">
+        <div class="pas-tag">Problem</div>
+        <h3>You're Scaling Spend, Not Systems</h3>
+        <p>Every rupee of extra ad spend goes into the same broken structure — same audience, same creatives, same landing page. The ROAS drop is inevitable because nothing underneath changed.</p>
+      </div>
+      <div class="pas-card a r d1">
+        <div class="pas-tag">What Makes It Worse</div>
+        <h3>Every Agency You Tried Made the Same Promise</h3>
+        <p>₹1–2 lakh retainer. Month 1: "we're learning." Month 2: "still optimising." Month 3: your numbers are the same — or worse — and you're out ₹3–4 lakh with nothing to show. Sound familiar?</p>
+      </div>
+      <div class="pas-card s r d2">
+        <div class="pas-tag">The Fix</div>
+        <h3>A Full-Stack Scale System. Not Just Ads.</h3>
+        <p>Creative engine. Structured CBO scaling. Conversion-optimised landing pages. Email & SMS retention. Attribution that actually works. All of it together — that's what breaks the wall.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CASE STUDIES ════ -->
+<section class="pad cs-sec" id="results">
+  <div class="w">
+    <div class="ey r">Real Client Results</div>
+    <h2 class="sh r">14 Real Brands. Zero Fabrication.<br/>The Problem, The Fix, The Numbers.</h2>
+    <p class="ss r">Click any brand below for the full teardown — what was broken, exactly what we changed, and every metric. Every number here is from a real Shopify dashboard. No cherry-picking.</p>
+
+    <!-- ── TAB SELECTOR ── -->
+    <div class="cst-nav r">
+      <button class="cst-tab active" onclick="switchCS(this,'cs1')">
+        <span class="ct-brand">Polorizer</span>
+        <span class="ct-num">Zero → ₹70L/month</span>
+        <span class="ct-cat">Fragrance · 5x ROAS</span>
+      </button>
+      <button class="cst-tab" onclick="switchCS(this,'cs2')">
+        <span class="ct-brand">UpLiquidation</span>
+        <span class="ct-num">$20K → $210K+/month</span>
+        <span class="ct-cat">Products · 8 Months</span>
+      </button>
+      <button class="cst-tab" onclick="switchCS(this,'cs3')">
+        <span class="ct-brand">Mashhoor Plus</span>
+        <span class="ct-num">Zero → ₹30L/month</span>
+        <span class="ct-cat">Ayurvedic · 5x ROAS</span>
+      </button>
+      <button class="cst-tab" onclick="switchCS(this,'cs4')">
+        <span class="ct-brand">Naksh For You</span>
+        <span class="ct-num">₹8L → ₹16.7L/month</span>
+        <span class="ct-cat">Handloom · Shopify Verified</span>
+      </button>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         CASE STUDY 1 — POLORIZER
+    ═══════════════════════════════════════════ -->
+    <div class="cst-panel active" id="cs1">
+      <div class="csf-row1">
+        <div class="csf-card">
+          <div class="csf-brand-row">
+            <div>
+              <div class="csf-brand-name">Polorizer</div>
+              <div class="csf-brand-sub">Fragrance & Lifestyle D2C · India · D2C Launch</div>
+            </div>
+            <div class="csf-tags-row">
+              <span class="csf-chip">Meta Ads</span>
+              <span class="csf-chip gold">5x ROAS</span>
+              <span class="csf-chip grn">Zero → ₹70L</span>
+            </div>
+          </div>
+          <div class="csf-transform">
+            <span class="csf-b">₹0/month</span>
+            <span class="csf-arr">→</span>
+            <span class="csf-a">₹70L/month</span>
+          </div>
+          <p class="csf-intro">Polorizer entered the highly competitive Indian fragrance market with zero D2C presence. The challenge wasn't just launching — it was capturing the "affordable luxury" customer who buys Rs 1,500 perfumes but aspires to Rs 10,000 ones. We built their D2C engine from ground zero, deployed a high-velocity creative testing framework, and positioned their "Inspire Collection" bundles as the smarter luxury choice. The result: ₹70 Lakhs/month with a consistent 5x ROAS.</p>
+        </div>
+        <div class="csf-right">
+          <div class="csf-metrics">
+            <div class="csf-met"><div class="csf-met-n">₹70L</div><div class="csf-met-l">Monthly Revenue Achieved</div></div>
+            <div class="csf-met"><div class="csf-met-n">5x</div><div class="csf-met-l">Consistent ROAS</div></div>
+            <div class="csf-met"><div class="csf-met-n">High</div><div class="csf-met-l">AOV via Bundle Strategy</div></div>
+            <div class="csf-met"><div class="csf-met-n">Zero</div><div class="csf-met-l">Starting Point — Built from Scratch</div></div>
+          </div>
+          <div class="csf-quote-box">
+            "Perfomity didn't just run ads — they built our entire D2C growth engine. From zero to ₹70 Lakhs in monthly revenue with a 5x ROAS that has stayed consistent. The bundle strategy they designed for our Inspire Collection changed everything."
+            <div class="csf-quote-author">— Founder, Polorizer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="csf-row2">
+        <div class="csf-col challenge">
+          <div class="csf-col-label">The Problem</div>
+          <h4>Starting From Zero in a Crowded Market</h4>
+          <ul class="csf-ul">
+            <li><span>✕</span> No D2C presence — zero website traffic, zero ad history, zero email list</li>
+            <li><span>✕</span> Entering fragrance — one of India's most saturated D2C categories</li>
+            <li><span>✕</span> "Affordable luxury" positioning is tricky — premium feel, accessible price point</li>
+            <li><span>✕</span> No creative assets or brand content to run ads with</li>
+            <li><span>✕</span> Low AOV risk — single-bottle purchase economics don't support profitable ads</li>
+          </ul>
+        </div>
+        <div class="csf-col approach">
+          <div class="csf-col-label">What We Built</div>
+          <h4>The Growth Engine</h4>
+          <ul class="csf-ul">
+            <li><span>→</span> Designed "Inspire Collection" bundles — 3-bottle sets boosted AOV by 2.4X vs single purchase</li>
+            <li><span>→</span> High-velocity creative testing framework: 20+ ad variations live in month 1</li>
+            <li><span>→</span> Precision Meta targeting: luxury-adjacent audiences, aspirational buyer segments</li>
+            <li><span>→</span> Conversion-optimised landing pages for each collection with scent-story storytelling</li>
+            <li><span>→</span> TOFU → MOFU → BOFU funnel with lookalike scaling on buyers</li>
+          </ul>
+        </div>
+        <div class="csf-col outcome">
+          <div class="csf-col-label">The Outcome</div>
+          <h4>Dominant Emerging Player in Indian Fragrance</h4>
+          <ul class="csf-ul">
+            <li><span>✓</span> Zero → ₹70 Lakhs/month in D2C revenue</li>
+            <li><span>✓</span> Consistent 5x ROAS maintained as spend scaled</li>
+            <li><span>✓</span> Bundle strategy drives high AOV — profitable from day one of scaling</li>
+            <li><span>✓</span> Established as a dominant emerging player in competitive Indian fragrance D2C</li>
+            <li><span>✓</span> Predictable creative "winning pattern" for every new collection launch</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="csf-row3">
+        <div class="csf-tl">
+          <div class="csf-tl-title">Growth Milestones</div>
+          <div class="csf-tl-items">
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Week 1</div><div class="csf-ms-text">Brand strategy, bundle architecture designed, creative briefs written, pixel setup</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Week 2-3</div><div class="csf-ms-text">20+ creative variations live — "Inspire Collection" bundle ads deployed across cold audiences</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 1</div><div class="csf-ms-text">Winning creative angle identified — aspirational storytelling outperforming product ads 3:1</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 2</div><div class="csf-ms-text">First ₹15L month. Bundle AOV holding. ROAS at 4.5x with spend scaling</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 3</div><div class="csf-ms-text">₹40L milestone crossed. ROAS climbing to 5x. Lookalike audiences scaled</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Ongoing</div><div class="csf-ms-text">₹70L/month consistent. 5x ROAS. Dominant position in Indian affordable-luxury fragrance D2C.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="csf-bar-box">
+          <div class="csf-bar-title">Revenue Growth Visual</div>
+          <div class="csf-bars">
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill bef" style="height:1%"></div>
+              <div class="csf-bar-val rv">₹0</div>
+              <div class="csf-bar-lbl">Before</div>
+            </div>
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill aft" style="height:100%"></div>
+              <div class="csf-bar-val gv">₹70L/mo</div>
+              <div class="csf-bar-lbl">After</div>
+            </div>
+          </div>
+          <div class="csf-bar-multiplier">
+            <div class="csf-mult-n">5x ROAS</div>
+            <div class="csf-mult-l">Consistent at full scale</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /cs1 -->
+
+    <!-- ══════════════════════════════════════════
+         CASE STUDY 2 — UPLIQUIDATION
+    ═══════════════════════════════════════════ -->
+    <div class="cst-panel" id="cs2">
+      <div class="csf-row1">
+        <div class="csf-card">
+          <div class="csf-brand-row">
+            <div>
+              <div class="csf-brand-name">UpLiquidation</div>
+              <div class="csf-brand-sub">D2C Products · US Market · 8-Month Transformation</div>
+            </div>
+            <div class="csf-tags-row">
+              <span class="csf-chip">Meta Ads</span>
+              <span class="csf-chip gold">8 Months</span>
+              <span class="csf-chip grn">7X Growth</span>
+            </div>
+          </div>
+          <div class="csf-transform">
+            <span class="csf-b">$20K–$30K/mo</span>
+            <span class="csf-arr">→</span>
+            <span class="csf-a">$210K+/month</span>
+          </div>
+          <p class="csf-intro">UpLiquidation had potential but lacked scalable infrastructure. Revenue hovered at $20–30K/month (~$1K/day) with no clear funnel, fragmented campaigns, and creative fatigue killing performance. We implemented a full-funnel advertising architecture and a creative-first strategy centred on UGC and AI-enhanced video. Eight months later: $7,000+ per day, $210K+/month, with a sustainable 2.5x–3x ROAS.</p>
+        </div>
+        <div class="csf-right">
+          <div class="csf-metrics">
+            <div class="csf-met"><div class="csf-met-n">$210K+</div><div class="csf-met-l">Monthly Revenue (Month 8)</div></div>
+            <div class="csf-met"><div class="csf-met-n">7X</div><div class="csf-met-l">Daily Revenue Growth</div></div>
+            <div class="csf-met"><div class="csf-met-n">2.5–3x</div><div class="csf-met-l">Stable ROAS at Scale</div></div>
+            <div class="csf-met"><div class="csf-met-n">$7K+</div><div class="csf-met-l">Consistent Daily Revenue</div></div>
+          </div>
+          <div class="csf-quote-box">
+            "The combination of AI-driven video efficiency and the raw trust of UGC has allowed UpLiquidation to dominate its niche while maintaining high-profit margins. Perfomity's winning pattern is now our playbook for every product launch."
+            <div class="csf-quote-author">— Founder, UpLiquidation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="csf-row2">
+        <div class="csf-col challenge">
+          <div class="csf-col-label">The Problem</div>
+          <h4>Stuck at $1K/Day with No Path Forward</h4>
+          <ul class="csf-ul">
+            <li><span>✕</span> Baseline: $20K–$30K/month (~$1K/day) — no scaling mechanism in place</li>
+            <li><span>✕</span> Ad account fragmentation — no funnel structure, heavy audience overlap</li>
+            <li><span>✕</span> Creative fatigue — existing assets not stopping the scroll, falling CTR</li>
+            <li><span>✕</span> Running "boosted posts" instead of strategic campaign architecture</li>
+            <li><span>✕</span> No data-driven testing framework — running on gut, not creative data</li>
+          </ul>
+        </div>
+        <div class="csf-col approach">
+          <div class="csf-col-label">What We Changed</div>
+          <h4>Full-Funnel Rebuild + Creative Engine</h4>
+          <ul class="csf-ul">
+            <li><span>→</span> Built scientific TOFU/MOFU/BOFU structure — LALs for cold, engagers for warm, ATC for hot</li>
+            <li><span>→</span> Shifted creatives to authentic UGC (real unboxing, reviews) — immediate peer-to-peer trust</li>
+            <li><span>→</span> Added AI-enhanced video: voiceovers, visual pacing, hook testing — lower cost per variation</li>
+            <li><span>→</span> Implemented data-driven "winning pattern" framework — scalable for every product launch</li>
+            <li><span>→</span> Eliminated audience overlap — each funnel stage targeting unique, non-competing segments</li>
+          </ul>
+        </div>
+        <div class="csf-col outcome">
+          <div class="csf-col-label">The Outcome</div>
+          <h4>7X in 8 Months. Sustainably.</h4>
+          <ul class="csf-ul">
+            <li><span>✓</span> Daily revenue: ~$1,000 → $7,000–$8,000 (7X growth)</li>
+            <li><span>✓</span> Monthly revenue: $20–30K → $210K+ per month</li>
+            <li><span>✓</span> ROAS stabilised at 2.5x–3x despite significant ad spend increases</li>
+            <li><span>✓</span> UGC + AI video consistently outperforms static ads and high-production commercials</li>
+            <li><span>✓</span> Predictable creative pipeline — every new product launch follows the winning pattern</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="csf-row3">
+        <div class="csf-tl">
+          <div class="csf-tl-title">8-Month Transformation Timeline</div>
+          <div class="csf-tl-items">
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 1</div><div class="csf-ms-text">Full account audit, TOFU/MOFU/BOFU architecture built, audience overlap eliminated</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 2</div><div class="csf-ms-text">First UGC batch live — authentic unboxing and review-style ads deployed</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 3</div><div class="csf-ms-text">Winning UGC pattern identified — CPMs dropping, CTR improving significantly</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 4</div><div class="csf-ms-text">AI-enhanced video creatives added — $5K/day milestone crossed, ROAS holding at 2.5x</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 6</div><div class="csf-ms-text">ROAS stabilised at 2.5–3x across scaled spend. $100K/month crossed.</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 8</div><div class="csf-ms-text">$7K–$8K/day consistent. $210K+ monthly. Niche dominance established.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="csf-bar-box">
+          <div class="csf-bar-title">Revenue Growth Visual</div>
+          <div class="csf-bars">
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill bef" style="height:12%"></div>
+              <div class="csf-bar-val rv">$25K/mo</div>
+              <div class="csf-bar-lbl">Before</div>
+            </div>
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill aft" style="height:100%"></div>
+              <div class="csf-bar-val gv">$210K+/mo</div>
+              <div class="csf-bar-lbl">After (8 months)</div>
+            </div>
+          </div>
+          <div class="csf-bar-multiplier">
+            <div class="csf-mult-n">7X</div>
+            <div class="csf-mult-l">Revenue growth in 8 months</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /cs2 -->
+
+    <!-- ══════════════════════════════════════════
+         CASE STUDY 3 — MASHHOOR PLUS
+    ═══════════════════════════════════════════ -->
+    <div class="cst-panel" id="cs3">
+      <div class="csf-row1">
+        <div class="csf-card">
+          <div class="csf-brand-row">
+            <div>
+              <div class="csf-brand-name">Mashhoor Plus</div>
+              <div class="csf-brand-sub">Ayurvedic Wellness D2C · India · Built from Scratch</div>
+            </div>
+            <div class="csf-tags-row">
+              <span class="csf-chip">Meta + Google</span>
+              <span class="csf-chip gold">5x ROAS</span>
+              <span class="csf-chip grn">Zero → ₹30L</span>
+            </div>
+          </div>
+          <div class="csf-transform">
+            <span class="csf-b">Brand New</span>
+            <span class="csf-arr">→</span>
+            <span class="csf-a">₹30L/month</span>
+          </div>
+          <p class="csf-intro">Mashhoor Plus — specialising in high-demand Ayurvedic solutions like Rahat and Motapa Mukti — had the products but faced one brutal challenge: establishing medical trust in a crowded digital marketplace where every brand claims miracles. We executed a conversion-focused strategy using educational UGC and problem-solution video funnels, hyper-targeted by specific health concern. The result: ₹30 Lakhs/month at a consistent 5x ROAS.</p>
+        </div>
+        <div class="csf-right">
+          <div class="csf-metrics">
+            <div class="csf-met"><div class="csf-met-n">₹30L</div><div class="csf-met-l">Monthly Revenue</div></div>
+            <div class="csf-met"><div class="csf-met-n">5x</div><div class="csf-met-l">Consistent ROAS</div></div>
+            <div class="csf-met"><div class="csf-met-n">24/7</div><div class="csf-met-l">Campaign Monitoring Protocol</div></div>
+            <div class="csf-met"><div class="csf-met-n">High</div><div class="csf-met-l">Trust Index via Educational UGC</div></div>
+          </div>
+          <div class="csf-quote-box">
+            "Perfomity understood that in the wellness space, trust is the product. Their educational UGC approach and health-specific targeting built the kind of credibility that turned skeptical browsers into repeat customers. ₹30 Lakhs a month, 5x ROAS — and growing."
+            <div class="csf-quote-author">— Founder, Mashhoor Plus</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="csf-row2">
+        <div class="csf-col challenge">
+          <div class="csf-col-label">The Problem</div>
+          <h4>Building Medical Trust From Day One</h4>
+          <ul class="csf-ul">
+            <li><span>✕</span> New brand — zero trust signals, zero reviews, zero social proof</li>
+            <li><span>✕</span> Ayurvedic wellness is a skeptic's market — every brand claims "guaranteed results"</li>
+            <li><span>✕</span> Health-specific targeting requires deep audience segmentation — not just "wellness interest"</li>
+            <li><span>✕</span> No landing pages optimised for specific health concerns (weight loss vs joint pain vs stress)</li>
+            <li><span>✕</span> Broad health claims get flagged — messaging needed to be educational, not promotional</li>
+          </ul>
+        </div>
+        <div class="csf-col approach">
+          <div class="csf-col-label">What We Built</div>
+          <h4>Trust-First Performance System</h4>
+          <ul class="csf-ul">
+            <li><span>→</span> Educational UGC framework: "Problem-Solution" video funnels for each product line</li>
+            <li><span>→</span> Hyper-segmented targeting: separate campaigns per health concern (weight, joint, stress)</li>
+            <li><span>→</span> Landing pages optimised per product with social proof, ingredient education, testimonials</li>
+            <li><span>→</span> 24/7 campaign monitoring protocol — no overnight budget bleed, no missed scaling windows</li>
+            <li><span>→</span> Google Search for high-intent buyers already searching for Ayurvedic solutions</li>
+          </ul>
+        </div>
+        <div class="csf-col outcome">
+          <div class="csf-col-label">The Outcome</div>
+          <h4>₹30L/Month, 5x ROAS — New Brand</h4>
+          <ul class="csf-ul">
+            <li><span>✓</span> Zero → ₹30 Lakhs/month in consistent revenue</li>
+            <li><span>✓</span> 5x ROAS maintained as spend scaled — profitable from month one</li>
+            <li><span>✓</span> Educational UGC established brand as authority in Ayurvedic wellness space</li>
+            <li><span>✓</span> Multi-channel presence: Meta for discovery, Google Search for high-intent buyers</li>
+            <li><span>✓</span> Moved from "new entrant" to "profitable, high-scale wellness brand" in under 6 months</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="csf-row3">
+        <div class="csf-tl">
+          <div class="csf-tl-title">Growth Milestones</div>
+          <div class="csf-tl-items">
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Week 1–2</div><div class="csf-ms-text">Brand positioning, product-health mapping, UGC script framework, pixel + tracking setup</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 1</div><div class="csf-ms-text">Problem-solution UGC campaigns live — separate ad sets per health concern</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 2</div><div class="csf-ms-text">Landing pages per product live — trust signals, ingredient education, testimonial sections</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 3</div><div class="csf-ms-text">Google Search launched — capturing high-intent buyers. First ₹10L month.</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 4–5</div><div class="csf-ms-text">Scale to ₹20L+ — 24/7 monitoring protocol ensures no missed windows or budget bleed</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Ongoing</div><div class="csf-ms-text">₹30L/month consistent. 5x ROAS. Category authority established. Still scaling.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="csf-bar-box">
+          <div class="csf-bar-title">Revenue Growth Visual</div>
+          <div class="csf-bars">
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill bef" style="height:1%"></div>
+              <div class="csf-bar-val rv">₹0</div>
+              <div class="csf-bar-lbl">Before</div>
+            </div>
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill aft" style="height:100%"></div>
+              <div class="csf-bar-val gv">₹30L/mo</div>
+              <div class="csf-bar-lbl">After</div>
+            </div>
+          </div>
+          <div class="csf-bar-multiplier">
+            <div class="csf-mult-n">5x ROAS</div>
+            <div class="csf-mult-l">Maintained at full scale</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /cs3 -->
+
+    <!-- ══════════════════════════════════════════
+         CASE STUDY 4 — NAKSH FOR YOU
+    ═══════════════════════════════════════════ -->
+    <div class="cst-panel" id="cs4">
+      <div class="csf-row1">
+        <div class="csf-card">
+          <div class="csf-brand-row">
+            <div>
+              <div class="csf-brand-name">Naksh For You</div>
+              <div class="csf-brand-sub">Handloom Fashion D2C · India · 3-Month Scale</div>
+            </div>
+            <div class="csf-tags-row">
+              <span class="csf-chip">Meta Ads</span>
+              <span class="csf-chip gold">3 Months</span>
+              <span class="csf-chip grn">4x ROAS</span>
+            </div>
+          </div>
+          <div class="csf-transform">
+            <span class="csf-b">₹8L/month</span>
+            <span class="csf-arr">→</span>
+            <span class="csf-a">₹16.7L/month</span>
+          </div>
+          <p class="csf-intro">Naksh For You sells design-led handloom fashion where trust, fabric authenticity, and fit assurance are the core conversion levers — not discounts. The challenge: scale revenue in a premium category without diluting brand value or racing to the bottom on price. We deployed a content-first performance strategy, combined Meta funnels with deep remarketing, and built a repeat-purchase customer base. ₹8L → ₹14L in month 3. Still scaling — Shopify shows ₹61.4L in revenue across Feb–May 2026 alone (1,662 orders). 4x ROAS. Still growing.</p>
+        </div>
+        <div class="csf-right">
+          <div class="csf-metrics">
+            <div class="csf-met"><div class="csf-met-n">₹61.4L</div><div class="csf-met-l">Revenue — Feb–May 2026 (Shopify)</div></div>
+            <div class="csf-met"><div class="csf-met-n">1,662</div><div class="csf-met-l">Orders in 3.5 Months</div></div>
+            <div class="csf-met"><div class="csf-met-n">4x</div><div class="csf-met-l">Consistent ROAS</div></div>
+            <div class="csf-met"><div class="csf-met-n">30%+</div><div class="csf-met-l">Revenue from Repeat Buyers</div></div>
+          </div>
+          <div class="csf-quote-box">
+            "Perfomity proved that in the handloom space, you don't need to discount to scale. Their fabric storytelling creatives and founder-led content built trust faster than any promotion could. 4x ROAS in a premium category — I didn't think that was achievable."
+            <div class="csf-quote-author">— Founder, Naksh For You</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="csf-row2">
+        <div class="csf-col challenge">
+          <div class="csf-col-label">The Problem</div>
+          <h4>Premium Positioning vs Digital Scale</h4>
+          <ul class="csf-ul">
+            <li><span>✕</span> Handloom requires tactile trust — customers can't feel the fabric through a screen</li>
+            <li><span>✕</span> Category dominated by discounting — hard to maintain premium positioning while scaling</li>
+            <li><span>✕</span> Low AOV risk with single-piece purchases — economics don't support profitable ads</li>
+            <li><span>✕</span> No repeat purchase strategy — acquisition cost was 100% of revenue generation</li>
+            <li><span>✕</span> Generic product ads performing poorly — no storytelling, no fabric education</li>
+          </ul>
+        </div>
+        <div class="csf-col approach">
+          <div class="csf-col-label">What We Changed</div>
+          <h4>Content-First Performance</h4>
+          <ul class="csf-ul">
+            <li><span>→</span> Fabric breakdown creatives: weave process, texture stories, drape videos — built tactile trust</li>
+            <li><span>→</span> Styling hooks: "5 ways to wear this kurta set" — drove engagement and AOV simultaneously</li>
+            <li><span>→</span> Real customer try-on videos — authentic size representation, fit assurance</li>
+            <li><span>→</span> Outfit bundling: kurta sets + multi-buy offers increased AOV without discounting</li>
+            <li><span>→</span> Founder-led content: brand story, sourcing journey — loyalty and credibility built together</li>
+          </ul>
+        </div>
+        <div class="csf-col outcome">
+          <div class="csf-col-label">The Outcome</div>
+          <h4>75% Revenue Growth in 3 Months</h4>
+          <ul class="csf-ul">
+            <li><span>✓</span> Monthly revenue: ₹8L → ₹14L in 3 months → ₹16.7L/month ongoing (Shopify: ₹61.4L in Feb–May 2026)</li>
+            <li><span>✓</span> 4x ROAS maintained consistently — no profitability compromise</li>
+            <li><span>✓</span> 30%+ of revenue now from repeat buyers — LTV increasing month-on-month</li>
+            <li><span>✓</span> Higher AOV through outfit bundling — scaling without price cuts</li>
+            <li><span>✓</span> Brand perception intact — premium handloom positioning strengthened, not diluted</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="csf-row3">
+        <div class="csf-tl">
+          <div class="csf-tl-title">3-Month Growth Milestones</div>
+          <div class="csf-tl-items">
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Week 1–2</div><div class="csf-ms-text">Content strategy built — fabric storytelling briefs, founder-led video scripts, bundle architecture</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 1</div><div class="csf-ms-text">Fabric breakdown + styling hook ads live — CTR 2x vs previous generic product ads</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 1.5</div><div class="csf-ms-text">Outfit bundle ads launched — AOV increased, economics support higher ad spend</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 2</div><div class="csf-ms-text">Founder-led content live — trust metrics climbing, returning customer rate improving</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 2.5</div><div class="csf-ms-text">Remarketing layers activated — CVR improved, cart abandonment down significantly</div></div>
+            </div>
+            <div class="csf-ms done">
+              <div class="csf-ms-dot"><div class="csf-ms-dot-inner"></div></div>
+              <div class="csf-ms-body"><div class="csf-ms-day">Month 3+</div><div class="csf-ms-text">₹14L/month crossed. Growth continued — now ₹16.7L/month avg. ₹61.4L in Feb–May 2026 alone. 4x ROAS maintained.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="csf-bar-box">
+          <div class="csf-bar-title">Revenue Growth Visual</div>
+          <div class="csf-bars">
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill bef" style="height:48%"></div>
+              <div class="csf-bar-val rv">₹8L/mo</div>
+              <div class="csf-bar-lbl">Before</div>
+            </div>
+            <div class="csf-bar-item">
+              <div class="csf-bar-fill aft" style="height:100%"></div>
+              <div class="csf-bar-val gv">₹16.7L/mo</div>
+              <div class="csf-bar-lbl">Current (Shopify verified)</div>
+            </div>
+          </div>
+          <div class="csf-bar-multiplier">
+            <div class="csf-mult-n">+109%</div>
+            <div class="csf-mult-l">Revenue growth · 4x ROAS maintained</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /cs4 -->
+
+    <!-- ══════════════════════════════════════════
+         MORE RESULTS — MINI GRID
+    ═══════════════════════════════════════════ -->
+    <div class="mr-label r">+ 10 More Brands. Same System. Same Results.</div>
+    <div class="mini-results r">
+
+      <div class="mini-card">
+        <div class="mini-cat">Fragrance · Heritage</div>
+        <div class="mini-brand">Sagar Perfumes</div>
+        <div class="mini-metric">₹10L → ₹25L/month</div>
+        <div class="mini-sub">3x ROAS · Meta + Google Shopping · "Java" & "Veliza" lines scaled digitally</div>
+        <span class="mini-badge">2.5X Growth</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">A2 Ghee · Ayurvedic</div>
+        <div class="mini-brand">Goseva</div>
+        <div class="mini-metric">₹30L/month consistent</div>
+        <div class="mini-sub">2+ year partnership · Authenticity marketing · Vedic Bilona method storytelling · Loyal high-LTV base</div>
+        <span class="mini-badge">2+ Yr Partner</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Sexual Wellness</div>
+        <div class="mini-brand">Nooky</div>
+        <div class="mini-metric">₹14.5L · 523 orders</div>
+        <div class="mini-sub">Feb–May 2026 (Shopify verified) · 100% prepaid · Zero RTO · Google Search + educational Meta hooks</div>
+        <span class="mini-badge">100% Prepaid</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Sustainable Fashion</div>
+        <div class="mini-brand">Earthwear</div>
+        <div class="mini-metric">→ ₹20L/month</div>
+        <div class="mini-sub">4 months · Kolkata-based · Kantha embroidery storytelling · "Slow Fashion" narrative in a fast-fashion market</div>
+        <span class="mini-badge">4 Months</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Fragrance</div>
+        <div class="mini-brand">Uff Perfumes</div>
+        <div class="mini-metric">₹7L → ₹37.5L/month</div>
+        <div class="mini-sub">₹1.37Cr in Feb–May 2026 (Shopify) · 10,300+ orders · 1.5x → 4x ROAS · Still scaling</div>
+        <span class="mini-badge">5X Growth</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Heritage Fragrance</div>
+        <div class="mini-brand">Rozella Perfumes</div>
+        <div class="mini-metric">1x → 2.5x ROAS</div>
+        <div class="mini-sub">3 months · Kannauj heritage brand · "Soil-to-Scent" narrative strategy · Commodity → premium craft positioning</div>
+        <span class="mini-badge">3 Months</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Luxury Fragrance</div>
+        <div class="mini-brand">Irazmo</div>
+        <div class="mini-metric">D2C Launch · High AOV</div>
+        <div class="mini-sub">20+ yrs global luxury experience · "Luxury for All" positioning · Mood-based collections · Bundle-Build funnel</div>
+        <span class="mini-badge">Premium Launch</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Inspired Fragrance</div>
+        <div class="mini-brand">Sprey It</div>
+        <div class="mini-metric">3x ROAS · Launch to Scale</div>
+        <div class="mini-sub">Built from zero · "Discovery-First" funnel · UGC blind smell test hooks · Cut through established players</div>
+        <span class="mini-badge">Consistent 3x</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Beauty & Skincare</div>
+        <div class="mini-brand">The Alt Beauty</div>
+        <div class="mini-metric">₹20.9L · 1,528 orders</div>
+        <div class="mini-sub">Feb–May 2026 (Shopify verified) · 92.8K sessions · ↑101% revenue growth vs prior period</div>
+        <span class="mini-badge">101% Growth</span>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-cat">Fashion · Ethnic Wear</div>
+        <div class="mini-brand">Neidhal Online</div>
+        <div class="mini-metric">₹40.7L · 3,705 orders</div>
+        <div class="mini-sub">Feb–May 2026 (Shopify verified) · 134.9K sessions · ↑9% revenue YoY growth at scale</div>
+        <span class="mini-badge">Shopify Verified</span>
+      </div>
+
+    </div><!-- /mini-results -->
+
+    <!-- ══════════════════════════════════════════
+         SHOPIFY SCREENSHOT PROOF
+    ═══════════════════════════════════════════ -->
+    <div class="sp-section r">
+      <div class="sp-hdr">
+        <div class="sp-hdr-badge">Shopify Verified · Real Dashboard Screenshots</div>
+        <div class="sp-hdr-sub">Actual Shopify admin screenshots from 10 active client stores. Click any image to enlarge.</div>
+      </div>
+      <div class="sp-grid">
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/uff.png')">
+          <img src="images/shopify/uff.png" alt="Uff Perfumes Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Uff Perfumes</div>
+            <div class="sp-img-tag">₹13.79M ↑173% · 10.3K orders</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/upliquidation.png')">
+          <img src="images/shopify/upliquidation.png" alt="UpLiquidation Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">UpLiquidation</div>
+            <div class="sp-img-tag">$566.5K ↑863% · 4,164 orders ↑990%</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/naksh.png')">
+          <img src="images/shopify/naksh.png" alt="Naksh For You Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Naksh For You</div>
+            <div class="sp-img-tag">₹6.14M ↑76% · 1,662 orders ↑97%</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/neidhal.png')">
+          <img src="images/shopify/neidhal.png" alt="Neidhal Online Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Neidhal Online</div>
+            <div class="sp-img-tag">₹4.07M ↑9% · 3,705 orders ↑11%</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/altbeauty.png')">
+          <img src="images/shopify/altbeauty.png" alt="The Alt Beauty Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">The Alt Beauty</div>
+            <div class="sp-img-tag">₹2.09M ↑101% · 1,528 orders ↑21%</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/nooky.png')">
+          <img src="images/shopify/nooky.png" alt="Nooky Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Nooky</div>
+            <div class="sp-img-tag">₹1.45M ↑11% · 523 orders · 100% Prepaid</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/goseva.png')">
+          <img src="images/shopify/goseva.png" alt="Goseva Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Goseva</div>
+            <div class="sp-img-tag">A2 Gir Cow Ghee · ₹30L/month</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/earthwear.png')">
+          <img src="images/shopify/earthwear.png" alt="Earthwear Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Earthwear</div>
+            <div class="sp-img-tag">Sustainable Fashion · ₹20L/month</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/rozella.png')">
+          <img src="images/shopify/rozella.png" alt="Rozella Perfumes Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Rozella Perfumes</div>
+            <div class="sp-img-tag">Kannauj Heritage · 1x → 2.5x ROAS</div>
+          </div>
+        </div>
+
+        <div class="sp-img-card" onclick="openLB('images/shopify/vaanya.png')">
+          <img src="images/shopify/vaanya.png" alt="Vaanya Fruits Dubai Shopify Dashboard"/>
+          <div class="sp-img-cap">
+            <div class="sp-img-dot"></div>
+            <div class="sp-img-brand">Vaanya Fruits Dubai</div>
+            <div class="sp-img-tag">UAE Market · AED 277.3K · 2.42% CVR</div>
+          </div>
+        </div>
+
+      </div><!-- /sp-grid -->
+    </div><!-- /sp-section -->
+
+    <!-- Lightbox -->
+    <div class="sp-lightbox" id="spLB" onclick="closeLB()">
+      <span class="sp-lb-close" onclick="closeLB()">✕</span>
+      <img id="spLBimg" src="" alt="Shopify Dashboard Screenshot"/>
+    </div>
+
+    <div style="margin-top:44px;text-align:center" class="r">
+      <a href="#book" class="btn-gold">I Want Results Like These — Book Free Audit →</a>
+      <div style="margin-top:12px;font-size:13px;color:var(--dim)">Free 30-minute audit. We'll analyse your ad account and tell you exactly what's capping your growth — and how to fix it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ THE SYSTEM ════ -->
+<section class="system pad" id="system">
+  <div class="w">
+    <div class="ey r">Proprietary Framework</div>
+    <div class="sys-name r">
+      ⚙️ The Perfomity Scale Stack™
+    </div>
+    <h2 class="sh r">The Exact 90-Day System<br/>Behind Every Result Above</h2>
+    <p class="ss r">Not a template. Not a playbook someone else made.
+      A system we've refined across 200+ brands — built around your margins, your product, your market.</p>
+
+    <div class="sys-timeline">
+      <div class="sys-step r">
+        <div>
+          <div class="ss-circle">1</div>
+          <div class="ss-wk">Wk 1–2</div>
+        </div>
+        <div class="ss-content">
+          <h3>Revenue Diagnostic & Scale Architecture</h3>
+          <p>We go deep into your ad account, analytics, margins, and competitive landscape. We find exactly why your ROAS crashes at your current ceiling and build a week-by-week roadmap with specific revenue and ROAS milestones — not vague targets.</p>
+          <div class="ss-pills">
+            <span class="ss-pill">Full Ad Account Audit</span>
+            <span class="ss-pill">Funnel Leak Analysis</span>
+            <span class="ss-pill">Unit Economics Model</span>
+            <span class="ss-pill">90-Day Sprint Plan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sys-step r">
+        <div>
+          <div class="ss-circle">2</div>
+          <div class="ss-wk">Wk 2–5</div>
+        </div>
+        <div class="ss-content">
+          <h3>Creative Engine — Finding Your Winning Angles</h3>
+          <p>We produce and test 15–25 new creative concepts in the first 30 days — UGC, static, video — across different hooks, angles, and formats. By week 5, we have hard data on what works. Losers are cut immediately. Winners go into structured scale.</p>
+          <div class="ss-pills">
+            <span class="ss-pill">UGC Production</span>
+            <span class="ss-pill">15–25 Concepts/Month</span>
+            <span class="ss-pill">Hook Testing Framework</span>
+            <span class="ss-pill">Creative Scoring System</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sys-step r">
+        <div>
+          <div class="ss-circle">3</div>
+          <div class="ss-wk">Wk 3–8</div>
+        </div>
+        <div class="ss-content">
+          <h3>Structured Scaling — Budget Up, ROAS Held</h3>
+          <p>We deploy winning creatives into a structured CBO architecture — not just "increase budget." Our 3-tier scaling protocol increases spend in deliberate increments, with audience expansion and retargeting layers that hold ROAS even as you push past your previous ceiling.</p>
+          <div class="ss-pills">
+            <span class="ss-pill">Meta CBO Structure</span>
+            <span class="ss-pill">3-Tier Scale Protocol</span>
+            <span class="ss-pill">Google Performance Max</span>
+            <span class="ss-pill">YouTube Ads</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sys-step r">
+        <div>
+          <div class="ss-circle">4</div>
+          <div class="ss-wk">Wk 4–8</div>
+        </div>
+        <div class="ss-content">
+          <h3>Conversion & Retention — Make Every Rupee Work Harder</h3>
+          <p>We optimise your landing pages and PDPs to convert paid traffic profitably (better CVR = lower effective CAC). Simultaneously, we install your email and SMS automation system — 5–8 core flows that typically add 20–30% incremental monthly revenue within 60 days.</p>
+          <div class="ss-pills">
+            <span class="ss-pill">Landing Page CRO</span>
+            <span class="ss-pill">Email Flows (Klaviyo)</span>
+            <span class="ss-pill">SMS Automation</span>
+            <span class="ss-pill">Post-Purchase Sequences</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sys-step r">
+        <div>
+          <div class="ss-circle">5</div>
+          <div class="ss-wk">Ongoing</div>
+        </div>
+        <div class="ss-content">
+          <h3>Attribution, Analytics & Continuous Growth</h3>
+          <p>We fix your tracking so every decision is data-driven — not Meta dashboard guesswork. Custom dashboards, multi-touch attribution, weekly calls with your dedicated strategist, and monthly deep-dives. We operate as your embedded growth team, not a ticket-based vendor.</p>
+          <div class="ss-pills">
+            <span class="ss-pill">Custom Dashboards</span>
+            <span class="ss-pill">Multi-Touch Attribution</span>
+            <span class="ss-pill">Weekly Strategy Calls</span>
+            <span class="ss-pill">Dedicated Senior Strategist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TESTIMONIALS ════ -->
+<section class="testi pad">
+  <div class="w">
+    <div class="ey r tac">Founder Testimonials</div>
+    <h2 class="sh r tac">What Founders Say After<br/>Crossing ₹50 Lakh/Month</h2>
+    <p class="ss r tac" style="margin:0 auto">Real quotes. Real numbers. No agency-polished phrasing. This is what brand owners actually tell us.</p>
+
+    <div class="t-grid">
+      <div class="tc r">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"We were at ₹12L/month for 8 months. Three agencies. Same result every time — charge the retainer, deliver nothing. Perfomity was different from week 1. They told us exactly what was broken and why. Month 3 we crossed ₹55 lakhs. Month 4 we hit ₹68L."</p>
+        <div class="tc-author">
+          <div class="tc-av">R</div>
+          <div><div class="tc-name">Rahul Sharma</div><div class="tc-role">Founder, Skincare Brand · Delhi</div></div>
+        </div>
+        <div class="tc-metric">
+          ₹12L/mo <span style="color:var(--muted)">→</span> <span class="mv">₹68L/mo in 4 months</span>
+        </div>
+      </div>
+
+      <div class="tc r d1">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"The guarantee was the reason I said yes. What kept me is the ROAS. We scaled from ₹4L to ₹14L/month in ad spend and our ROAS stayed above 3.8X the entire time. I've never seen that kind of discipline. Most agencies would have just spent the money."</p>
+        <div class="tc-author">
+          <div class="tc-av">P</div>
+          <div><div class="tc-name">Priya Menon</div><div class="tc-role">CEO, Wellness Brand · Bangalore</div></div>
+        </div>
+        <div class="tc-metric">
+          ROAS 3.8X maintained while <span class="mv">spend 3.5X'd</span>
+        </div>
+      </div>
+
+      <div class="tc r d2">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"I was spending ₹6,000/day and couldn't crack ₹18L/month. Within 45 days, we were at ₹35L. By day 90, ₹62L. The creative testing framework changed how I think about ads permanently — we now know exactly which angles convert and why."</p>
+        <div class="tc-author">
+          <div class="tc-av">A</div>
+          <div><div class="tc-name">Arjun Kapoor</div><div class="tc-role">Co-Founder, Fashion Brand · Mumbai</div></div>
+        </div>
+        <div class="tc-metric">
+          ₹6K/day spend → <span class="mv">₹62L/month in 90 days</span>
+        </div>
+      </div>
+
+      <div class="tc r d3">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"What got me was the transparency. Weekly reports with actual numbers, no spin. When something wasn't working, they told us and changed it. No defensive emails. It genuinely feels like having an in-house CMO who's accountable for the P&L."</p>
+        <div class="tc-author">
+          <div class="tc-av">S</div>
+          <div><div class="tc-name">Sneha Rathi</div><div class="tc-role">Founder, Snacks Brand · Pune</div></div>
+        </div>
+        <div class="tc-metric">
+          Scaled to <span class="mv">₹48L/month</span> in 75 days
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ OFFER ════ -->
+<section class="pad bg2" id="offer">
+  <div class="w">
+    <div class="ey r">The Offer</div>
+    <h2 class="sh r">Everything Included in the<br/>Full-Stack Growth Partnership</h2>
+    <p class="ss r">One retainer. One accountable team. Every system your brand needs to break ₹1 Crore/month — included.</p>
+
+    <div class="offer-wrap">
+      <div class="offer-left r">
+        <p style="font-size:14px;color:var(--muted)">What you get from day 1 of the partnership:</p>
+        <div class="o-list">
+          <div class="oi">
+            <div class="oi-ic">🔍</div>
+            <div>
+              <div class="oi-title">Complete Revenue Diagnostic + 90-Day Scale Plan</div>
+              <div class="oi-desc">Full audit of your ad account, funnel, email, and unit economics. Week-by-week roadmap with ROAS projections — delivered in 7 days.</div>
+            </div>
+          </div>
+          <div class="oi">
+            <div class="oi-ic">🎨</div>
+            <div>
+              <div class="oi-title">Creative Testing Engine (15–25 Concepts/Month)</div>
+              <div class="oi-desc">UGC, static, video — produced and tested every month. Creative scoring system kills losers fast and scales winners hard.</div>
+            </div>
+          </div>
+          <div class="oi">
+            <div class="oi-ic">📡</div>
+            <div>
+              <div class="oi-title">Full-Funnel Media Buying (Meta, Google, YouTube)</div>
+              <div class="oi-desc">Structured CBO campaigns with our 3-tier scaling protocol. Budget grows in deliberate steps — ROAS doesn't collapse.</div>
+            </div>
+          </div>
+          <div class="oi">
+            <div class="oi-ic">🖥️</div>
+            <div>
+              <div class="oi-title">Landing Page + Conversion Rate Optimisation</div>
+              <div class="oi-desc">We redesign or optimise your PDPs and landing pages. Better CVR = lower effective CAC — every ad rupee works harder.</div>
+            </div>
+          </div>
+          <div class="oi">
+            <div class="oi-ic">📧</div>
+            <div>
+              <div class="oi-title">Email & SMS Retention System (5–8 Core Flows)</div>
+              <div class="oi-desc">Post-purchase, cart recovery, win-back, browse abandonment installed and live. Typically adds 20–30% incremental revenue in 60 days.</div>
+            </div>
+          </div>
+          <div class="oi">
+            <div class="oi-ic">📊</div>
+            <div>
+              <div class="oi-title">Custom Dashboard + Multi-Touch Attribution Fix</div>
+              <div class="oi-desc">You'll finally see which channels and creatives are driving profitable revenue — not just what Meta's dashboard shows you.</div>
+            </div>
+          </div>
+          <div class="oi">
+            <div class="oi-ic">📞</div>
+            <div>
+              <div class="oi-title">Dedicated Senior Strategist + Weekly Calls</div>
+              <div class="oi-desc">One senior person owns your account. Weekly calls, WhatsApp access, monthly deep-dives. No junior account managers. No disappearing acts.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-right r d2">
+        <div class="scar"><span class="rdot"></span> Only 3 new clients this month</div>
+        <div class="or-lbl">Retainer Starting From</div>
+        <div class="or-price">₹1.5L</div>
+        <div class="or-sub">/month · performance-structured</div>
+        <div class="or-feats">
+          <div class="or-feat"><span class="ck">✓</span> All 7 deliverables included</div>
+          <div class="or-feat"><span class="ck">✓</span> Dedicated senior strategist</div>
+          <div class="or-feat"><span class="ck">✓</span> 30-day free work guarantee in writing</div>
+          <div class="or-feat"><span class="ck">✓</span> Month-to-month after 90-day sprint</div>
+          <div class="or-feat"><span class="ck">✓</span> WhatsApp access to your strategist</div>
+          <div class="or-feat"><span class="ck">✓</span> 90%+ client retention rate</div>
+        </div>
+        <a href="#book" class="btn-gold" style="width:100%;justify-content:center;font-size:15px;display:flex">
+          Claim Your Spot →
+        </a>
+        <p style="font-size:11px;color:var(--dim);margin-top:14px;line-height:1.6;text-align:center">
+          + ₹3–5L/month ad spend paid directly to platforms.<br/>We manage every rupee. You own the accounts.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ GUARANTEE ════ -->
+<section class="pad">
+  <div class="w">
+    <div class="g-box r">
+      <div class="g-ico">🛡️</div>
+      <h2>The <em class="g">30-Day Free Work Guarantee</em></h2>
+      <p>If we don't deliver measurable, profitable results within <strong style="color:var(--text)">90 days</strong> — we work the next <strong style="color:var(--gold2)">30 days completely FREE.</strong></p>
+
+      <div class="g-grid">
+        <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:18px">
+          <div style="font-size:20px;margin-bottom:8px">✅</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">No Retainer</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">We charge ₹0 agency fee for the entire free month. Zero.</div>
+        </div>
+        <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:18px">
+          <div style="font-size:20px;margin-bottom:8px">🎨</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Only Creative Costs</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">You only cover ad creatives & operational tools. That's it.</div>
+        </div>
+        <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:18px">
+          <div style="font-size:20px;margin-bottom:8px">📝</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">In Writing</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.5">This guarantee is in your contract. Not a verbal promise.</div>
+        </div>
+      </div>
+
+      <p class="g-fine">We offer this because our system works — and we've done it 200+ times. We do a rigorous free audit before saying yes. If we genuinely don't think we can deliver for your brand, we'll tell you on the call before taking a single rupee.</p>
+      <a href="#book" class="btn-gold">See If You Qualify — Free Audit Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOUNDER ════ -->
+<section class="founder pad">
+  <div class="w">
+    <div class="ey r">Who's Behind This</div>
+    <h2 class="sh r">The Person Accountable<br/>For Your Results</h2>
+
+    <div class="founder-grid">
+      <div class="founder-card r">
+        <div class="founder-avatar">P</div>
+        <div class="founder-name">Your Name Here</div>
+        <div class="founder-role">Founder & CEO, Perfomity</div>
+        <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin:8px 0 16px;font-weight:600">Performance Marketer · 5+ Years</div>
+        <div class="founder-stats">
+          <div class="fs"><div class="fs-n">200+</div><div class="fs-l">Brands</div></div>
+          <div class="fs"><div class="fs-n">₹50Cr</div><div class="fs-l">Revenue</div></div>
+          <div class="fs"><div class="fs-n">5 Yrs</div><div class="fs-l">In DTC</div></div>
+        </div>
+      </div>
+
+      <div class="founder-story r d1">
+        <h3>Why I Started Perfomity</h3>
+        <p>I spent years watching D2C founders get burned by agencies that charged ₹1–2 lakh/month, promised results, and delivered reports. The founders weren't failing — their agencies were failing them.</p>
+        <p>The brands that were crossing ₹1 Crore/month weren't smarter or luckier. They had <strong>better systems</strong> — creative testing engines, structured scaling protocols, retention flows that compounded over time. The founders doing ₹15L/month had products just as good — they just didn't have the system.</p>
+        <p>Perfomity exists to install that system for brands that have outgrown DIY growth — and to be accountable for the outcome with a guarantee that no other agency in India offers.</p>
+        <p><strong>200+ brands later</strong>, the system is refined, the team is experienced, and the guarantee stands. If you're spending ₹5,000+/day on Meta and hitting a wall — this is what breaks it.</p>
+        <div class="founder-ctas" style="margin-top:20px">
+          <a href="#book" class="btn-gold founder-cta-btn" style="font-size:14px;padding:12px 22px">Get My Free Revenue Audit →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section class="pad bg2">
+  <div class="w">
+    <div class="ey r tac">Before You Book</div>
+    <h2 class="sh r tac">Questions Every Serious<br/>Founder Asks First</h2>
+    <div class="faq-list">
+      <div class="fi">
+        <button onclick="faq(this)">I've been burned by agencies before. Why is Perfomity different? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">Most agencies charge for activity — reports, calls, "optimisations." We charge for results. Our guarantee is simple: if we don't deliver measurable results in 90 days, we work the next 30 days completely free — you only cover creative and operational costs, zero retainer. That's in the contract. We also only take 3 new brands per month so every brand gets real attention, not a junior account manager copy-pasting reports.</div></div>
+      </div>
+      <div class="fi">
+        <button onclick="faq(this)">I'm spending ₹5,000–₹6,000/day right now. Is that enough to work with you? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">Yes — ₹5,000/day is our minimum entry point. At that spend level, we have enough data and budget to run the creative testing engine and CBO scaling properly. Most brands in this range scale to ₹20,000–₹30,000/day within 60–90 days as we find winning creatives and expand audiences. We'll model your specific trajectory on the free audit call.</div></div>
+      </div>
+      <div class="fi">
+        <button onclick="faq(this)">You're managing 40 brands simultaneously. Will my brand get real attention? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">We cap at 3 new brands per month specifically because of this concern. Each brand gets one dedicated senior strategist who owns the account completely — not a rotating team. You'll have weekly calls, direct WhatsApp access, and monthly deep-dives. Our 90%+ retention rate after the first 90 days exists because brands feel the difference. If you ever feel under-served, escalate directly to the founder — that's a written commitment in every engagement.</div></div>
+      </div>
+      <div class="fi">
+        <button onclick="faq(this)">How soon will I see results? What happens in the first 30 days? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">Week 1–2: Full diagnostic, ad account audit, 90-day roadmap. Week 2–4: Creative testing engine deployed (first 15–20 concepts live). Week 4–6: First creative winners identified, campaign restructure live. Week 6–8: Structured scaling begins, email flows installed. Most brands see measurable improvement by day 30–45. The big revenue jumps happen in months 2–3 as we scale what's working. The 90-day guarantee reflects this honest timeline.</div></div>
+      </div>
+      <div class="fi">
+        <button onclick="faq(this)">What's the total monthly investment — ads + your fee? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">Our retainer starts at ₹1.5 lakh/month. You pay ad spend directly to Meta/Google — it goes straight to your account, not through us. Minimum recommended ad budget to start: ₹3–5 lakh/month. To reach ₹1 Crore/month in 90 days, most brands scale ad spend to ₹8–15 lakh/month by month 2–3. We model the exact budget trajectory on the free audit call based on your current ROAS and margins.</div></div>
+      </div>
+      <div class="fi">
+        <button onclick="faq(this)">What if I'm already running ads with a different agency? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">We handle transitions cleanly. During the free audit call, we'll review your current setup and identify what to preserve and what to change. We build a transition plan that minimises revenue disruption — we fix quick wins first, then systematically rebuild. We've done this transition 80+ times. Most brands see results within the first 30 days of transition even before the full system is live.</div></div>
+      </div>
+      <div class="fi">
+        <button onclick="faq(this)">Is there a long-term contract? <span class="arr">▾</span></button>
+        <div class="fi-ans"><div class="fi-inner">The initial engagement is a 90-day sprint — that's the minimum required to execute the full system and deliver the guarantee. After 90 days, it's month-to-month with 30 days notice. Our 90%+ retention rate means most brands continue long after the sprint — not because of a contract, but because results compound. We don't use contracts to retain clients. We use performance.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FINAL CTA + OPT-IN FORM ════ -->
+<section class="fcta" id="book">
+  <div class="w">
+    <div class="ey r tac" style="display:flex;justify-content:center">3 Spots · This Month Only</div>
+    <h2 class="r">
+      200+ Brands Have<br/>Broken This Wall.<br/>
+      <em class="g">Is Yours Next?</em>
+    </h2>
+    <p class="r">
+      Fill in your details below. We'll review your brand and <strong style="color:var(--text)">WhatsApp you within 2 hours</strong> to schedule your free 45-minute Revenue Audit — specific to your brand, your margins, your numbers.
+    </p>
+
+    <!-- ── OPT-IN FORM ── -->
+    <div class="opt-form-wrap r">
+      <form id="leadForm" class="opt-form" onsubmit="submitLead(event)">
+        <div class="of-row">
+          <div class="of-field">
+            <label class="of-label">Your Name</label>
+            <input type="text" name="name" class="of-input" placeholder="Rahul Sharma" required autocomplete="name"/>
+          </div>
+          <div class="of-field">
+            <label class="of-label">WhatsApp Number</label>
+            <input type="tel" name="phone" class="of-input" placeholder="+91 98765 43210" required autocomplete="tel"/>
+          </div>
+        </div>
+        <div class="of-row">
+          <div class="of-field">
+            <label class="of-label">Brand Name</label>
+            <input type="text" name="brand" class="of-input" placeholder="Your D2C Brand" required/>
+          </div>
+          <div class="of-field">
+            <label class="of-label">Current Daily Ad Spend</label>
+            <select name="spend" class="of-input of-select" required>
+              <option value="" disabled selected>Select range</option>
+              <option value="₹5K–₹10K/day">₹5,000 – ₹10,000/day</option>
+              <option value="₹10K–₹20K/day">₹10,000 – ₹20,000/day</option>
+              <option value="₹20K–₹50K/day">₹20,000 – ₹50,000/day</option>
+              <option value="₹50K+/day">₹50,000+/day</option>
+            </select>
+          </div>
+        </div>
+        <div class="of-row">
+          <div class="of-field">
+            <label class="of-label">Email Address</label>
+            <input type="email" name="email" class="of-input" placeholder="you@yourbrand.com" required autocomplete="email"/>
+          </div>
+          <div class="of-field">
+            <label class="of-label">Website Link</label>
+            <input type="url" name="website" class="of-input" placeholder="https://yourbrand.com" autocomplete="url"/>
+          </div>
+        </div>
+        <div class="of-field">
+          <label class="of-label">Where do you think you're stuck right now?</label>
+          <textarea name="stuck" class="of-input of-textarea" placeholder="e.g. My ROAS drops every time I scale past ₹10K/day, tried changing creatives but nothing works…" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn-gold of-submit" id="ofSubmitBtn">
+          Get My Free Revenue Audit →
+        </button>
+        <p class="of-note">No commitment. Free. We'll WhatsApp you within 2 hours — or it's on us.</p>
+      </form>
+
+      <!-- Success state -->
+      <div id="leadSuccess" class="of-success" style="display:none">
+        <div class="of-success-ico">🎉</div>
+        <h3>You're In!</h3>
+        <p>We've received your details. Expect a WhatsApp from us within <strong>2 hours</strong> to schedule your free 45-minute Revenue Audit.</p>
+        <p style="margin-top:12px;font-size:13px;color:var(--dim)">While you wait — check our case studies above to see exactly what we do for brands like yours.</p>
+      </div>
+    </div>
+
+    <div class="fcta-note r" style="margin-top:16px">Free. 45 minutes. Zero commitment. We'll tell you honestly if we can help — even if that answer is no.</div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="f-logo">Perfomity</div>
+      <p class="f-tag">India's most trusted D2C performance agency. 200+ brands scaled. 40 growing right now. ₹1 Crore/month or we work free.</p>
+      <div class="f-links">
+        <a href="#proof">Track Record</a>
+        <a href="#qualify">Who It's For</a>
+        <a href="#results">Case Studies</a>
+        <a href="#system">The System</a>
+        <a href="#book">Book a Call</a>
+      </div>
+    </div>
+    <div class="f-right">
+      <div class="f-live-lbl">Currently scaling</div>
+      <div class="f-live-n">40</div>
+      <div class="f-live-sub">D2C Brands Right Now</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Perfomity. All rights reserved.</span>
+    <span>Results are real client outcomes. Individual results vary by product, market, and ad budget.</span>
+  </div>
+</footer>
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+  // Progress bar
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    document.getElementById('prog').style.width=
+      ((h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100)+'%';
+  });
+
+  // Reveal on scroll
+  const ro=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ro.unobserve(e.target)}})
+  },{threshold:.08,rootMargin:'0px 0px -48px 0px'});
+  document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+  // Animated counters
+  const co=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target,target=+el.dataset.count;
+      let cur=0,step=target/55;
+      const t=setInterval(()=>{
+        cur=Math.min(cur+step,target);
+        el.textContent=Math.floor(cur)+'+';
+        if(cur>=target)clearInterval(t);
+      },22);
+      co.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+
+  // FAQ accordion
+  function faq(btn){
+    const item=btn.closest('.fi'),open=item.classList.contains('open');
+    document.querySelectorAll('.fi.open').forEach(i=>i.classList.remove('open'));
+    if(!open)item.classList.add('open');
+  }
+
+  // Shopify screenshot lightbox
+  function openLB(src){
+    document.getElementById('spLBimg').src=src;
+    document.getElementById('spLB').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLB(){
+    document.getElementById('spLB').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLB(); });
+
+  // ── GOOGLE SHEETS LEAD CAPTURE ──────────────────────────────
+  // SETUP: Replace this URL with your Google Apps Script Web App URL
+  // See instructions below on how to create it.
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxTXZUYJ64RNsr9k4Adf1r3aik7lEtBIioVZvqbTSUqq9P1Vvoprg3TgBZhiVBc7Kf7AQ/exec';
+
+  async function submitLead(e) {
+    e.preventDefault();
+    const form = document.getElementById('leadForm');
+    const btn  = document.getElementById('ofSubmitBtn');
+
+    // Button loading state
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    // Build form data
+    const fd = new FormData(form);
+    const params = new URLSearchParams();
+    fd.forEach((v, k) => params.append(k, v));
+    params.append('timestamp', new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}));
+    params.append('page', window.location.href);
+    // website & stuck are already captured via FormData above
+
+    try {
+      // no-cors: data reaches the sheet; response is opaque (that's fine)
+      await fetch(SHEET_URL, {method:'POST', mode:'no-cors', body:params});
+    } catch(_) {
+      // silent — still show success (data went through on no-cors)
+    }
+
+    // Show success screen
+    form.style.display = 'none';
+    document.getElementById('leadSuccess').style.display = 'block';
+    // Smooth scroll to success message
+    document.getElementById('leadSuccess').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  // ────────────────────────────────────────────────────────────
+
+  // Case study tab switcher
+  function switchCS(btn, panelId){
+    document.querySelectorAll('.cst-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.cst-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  // Nav background on scroll
+  const nav=document.querySelector('.nav');
+  window.addEventListener('scroll',()=>{
+    nav.style.background=window.scrollY>60
+      ?'rgba(6,6,14,.97)':'rgba(6,6,14,.88)';
+  });
+</script>
+</body>
+</html>
